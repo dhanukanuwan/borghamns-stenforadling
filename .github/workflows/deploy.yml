@@ -1,19 +1,20 @@
 on: [push]
 
 jobs:
-    deploy_job:
-    runs-on: ubuntu-latest
-    name: deploy
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Deploy files
-          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-          with:
-            username: ${{ secrets.STAGING_SERVER_USERNAME }}
-            server: ${{ secrets.STAGING_SERVER_HOST }}
-            port: ${{ secrets.STAGING_SERVER_PORT }}
-            local_path: './*'
-            remote_path: ${{ secrets.STAGING_SERVER_PATH }}
-            sftp_only: true
-            password: ${{ secrets.STAGING_SERVER_PASSWORD }}
+  deploy_job:
+  runs-on: ubuntu-latest
+  name: deploy
+  steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy files
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.STAGING_SERVER_USERNAME }}
+          server: ${{ secrets.STAGING_SERVER_HOST }}
+          port: ${{ secrets.STAGING_SERVER_PORT }}
+          local_path: './*'
+          remote_path: ${{ secrets.STAGING_SERVER_PATH }}
+          sftp_only: true
+          password: ${{ secrets.STAGING_SERVER_PASSWORD }}
+            
