@@ -13,9 +13,28 @@ nginx.conf
 
 # wordpress specific
 wp-config.php
+index.php
+license.txt
+readme.html
+wp-activate.php
+wp-admin/
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-cron.php
+wp-inclides/
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
 wp-content/uploads/
 wp-content/blogs.dir/
 wp-content/upgrade/*
+wp-content/upgrade-temp-backup/*
 wp-content/backup-db/*
 wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
@@ -28,6 +47,9 @@ wp-content/themes/borghamns/node_modules
 wp-content/themes/borghamns/vendor/
 wp-content/languages/
 wp-content/mu-plugins/
+wp-content/themes/twentytwentyfour
+wp-content/themes/twentytwentythree
+wp-content/themes/twentytwentytwo
 
 wp-content/webp-express/config/wod-options.json
 wp-content/webp-express/config/config.json
