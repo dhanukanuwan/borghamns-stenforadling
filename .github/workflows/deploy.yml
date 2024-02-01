@@ -1,14 +1,8 @@
-name: Deploy Files
-
-on:
-  push:
-    branches:
-      -staging
+on: [push]
 
 jobs:
   mirror_with_sftp:
-    name: "Deploy to Staging"
-    if: ${{ github.ref == 'refs/heads/staging' }}
+    name: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
