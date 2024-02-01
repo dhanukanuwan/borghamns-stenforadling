@@ -1,0 +1,134 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    text-transform: uppercase;
+    &.liten {
+        font-family: $headings-alt;
+        text-transform: none;
+    }
+}
+.text-size-medium {
+    font-size: 0.875rem;
+}
+.text-size-small {
+    font-size: 0.75rem;
+}
+.hero-content {
+    background-color: transparentize($primary, 0.3);
+}
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+.line-right {
+    width: 30px;
+    height: 1px;
+    vertical-align: middle;
+}
+
+.round-img-wrap {
+    cursor: pointer;
+    .img-wrap-overlay {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    &:hover {
+        .img-wrap-overlay {
+            opacity: 1;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .hero-img-1 {
+        img {
+            max-height: 400px;
+            margin-left: -15%;
+        }
+    }
+    .hero-img-2 {
+        img {
+            max-height: 300px;
+            margin-left: -68%;
+        }
+    }
+    .hero-img-3 {
+        img {
+            max-height: 300px;
+            margin-left: -93%;
+        }
+    }
+    .not-found-h1 {
+        font-size: 10rem;
+    }
+    
+}
+
+@include media-breakpoint-down(md) {
+    .not-found-h1 {
+        font-size: 7rem;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .hero-img-1 {
+        img {
+            max-height: 540px;
+            margin-left: -15%;
+        }
+    }
+    .hero-img-2 {
+        img {
+            max-height: 400px;
+            margin-left: -68%;
+        }
+    }
+    .hero-img-3 {
+        img {
+            max-height: 400px;
+            margin-left: -97%;
+        }
+    }
+}
+
+@include media-breakpoint-down(xxl) {
+    .hero-images-wrap {
+        overflow-x: hidden;
+    }
+}
+
+.text-decoration-hover:hover {
+    text-decoration: underline !important;
+}
+
+.footer-top {
+    .social-icons {
+        a {
+            width: 35px;
+            height: 35px;
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.accordion-button {
+    &[aria-expanded="true"] {
+        h3 {
+            color: $white;
+        }
+    }
+}
