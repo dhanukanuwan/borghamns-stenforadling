@@ -11,7 +11,7 @@
 						<span class="line-right bg-primary d-inline-block"></span>
 						<span class="ms-2 text-primary">Produkter</span>
 					</div>
-					<h2 class="mt-2 mb-3 liten">Våra Stensorter Test 4</h2>
+					<h2 class="mt-2 mb-3 liten">Våra Stensorter Test 5</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis finibus nisi. Aliquam mollis eleifend ex, a aliquam leo porta ut. Nunc interdum tristique rhoncus.</p>
 
 				</div>
