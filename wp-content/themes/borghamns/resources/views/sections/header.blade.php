@@ -16,57 +16,23 @@
 				<a class="navbar-brand" href="{{home_url('/')}}">
 					<img src="@asset('images/logo-white.png')" alt="{{bloginfo('name')}}" style="max-width: 170px" />
 				</a>
-				
+
 				<div class="collapse navbar-collapse" >
-					<ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
-						<li class="nav-item dropdown">
-							<a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Stensorter</a>
-							<ul class="dropdown-menu bg-secondary rounded-0">
-								<li><a class="dropdown-item" href="#">Produktbeskrivning</a></li>
-								<li><a class="dropdown-item" href="#">Kolmårdsmarmor</a></li>
-								<li><a class="dropdown-item" href="#">Kalksten</a></li>
-								<li><a class="dropdown-item" href="#">Beställ prover</a></li>
-								<li><a class="dropdown-item" href="#">Begär offert</a></li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white" href="#">Produktion</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Restaurering</a>
-							<ul class="dropdown-menu bg-secondary rounded-0">
-								<li><a class="dropdown-item" href="#">Galleri</a></li>
-								<li><a class="dropdown-item" href="#">Dokument</a></li>
-								<li><a class="dropdown-item" href="{{home_url('/om-oss')}}">Om oss</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Produkter</a>
-							<ul class="dropdown-menu bg-secondary rounded-0">
-								<li><a class="dropdown-item" href="#">Badrum</a></li>
-								<li><a class="dropdown-item" href="#">Kök</a></li>
-								<li><a class="dropdown-item" href="#">Rum</a></li>
-								<li><a class="dropdown-item" href="#">Produktion & restaurering</a></li>
-								<li><a class="dropdown-item" href="#">Golv</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Referenser</a>
-							<ul class="dropdown-menu bg-secondary rounded-0">
-								<li><a class="dropdown-item" href="#">Näringslivets hus</a></li>
-								<li><a class="dropdown-item" href="#">Nationalmuseum</a></li>
-								<li><a class="dropdown-item" href="#">Bro park</a></li>
-								<li><a class="dropdown-item" href="#">Konstakademien</a></li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white" href="#">Kontakt</a>
-						</li>
-					</ul>
+
+					{{ wp_nav_menu(
+						array(
+							'theme_location' => 'primary_navigation',
+							'menu_class' => 'navbar-nav ms-auto me-auto mb-2 mb-lg-0',
+							'container' => false,
+							'fallback_cb' => 'Bootstrap_Walker_Menu::fallback',
+							'walker' => new Bootstrap_Walker_Menu()
+						) 
+					)
+					}}
 
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="btn btn-primary rounded-0" aria-current="page" href="#">
+							<a class="btn btn-primary rounded-0" aria-current="page" href="{{home_url('/offert')}}">
 								<div class="d-flex">
 									<span class="pe-2">Begär offert</span>
 									<div class="d-flex align-items-center">
@@ -79,6 +45,7 @@
 					</ul>
 
 				</div>
+
 			</div>
 		</nav>
 
