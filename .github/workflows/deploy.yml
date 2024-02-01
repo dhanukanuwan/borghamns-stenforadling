@@ -1,21 +1,28 @@
-on: [push]
+name: Deploy Files
+
+on:
+  push:
+    branches:
+      -master
+      -staging
 
 jobs:
   mirror_with_sftp:
-    name: deploy
+    name: "Deploy to Staging"
+    if: ${{ github.ref == 'refs/heads/staging' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: FTP Deployer
         uses: sand4rt/ftp-deployer@v1.7
         with:
           sftp: true
-          host: ${{ secrets.SERVER_HOST }}
-          port: 22
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          remote_folder: ${{ secrets.SERVER_PATH }}
+          host: ${{ secrets.STAGING_SERVER_HOST }}
+          port: ${{ secrets.STAGING_SERVER_PORT }}
+          username: ${{ secrets.STAGING_SERVER_USERNAME }}
+          password: ${{ secrets.STAGING_SERVER_PASSWORD }}
+          remote_folder: ${{ secrets.STAGING_SERVER_PATH }}
           local_folder: '.'
           cleanup: false
           include: '[ "*", "**/*" ]'
