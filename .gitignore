@@ -22,7 +22,7 @@ wp-blog-header.php
 wp-comments-post.php
 wp-config-sample.php
 wp-cron.php
-wp-inclides/
+wp-includes/
 wp-links-opml.php
 wp-load.php
 wp-login.php
