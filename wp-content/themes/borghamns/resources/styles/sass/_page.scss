@@ -39,6 +39,10 @@ h6,
     vertical-align: middle;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .round-img-wrap {
     cursor: pointer;
     .img-wrap-overlay {
@@ -129,6 +133,55 @@ h6,
     &[aria-expanded="true"] {
         h3 {
             color: $white;
+        }
+    }
+}
+
+.dynamic-steps-outer {
+    .dynamic-step {
+
+        &:not(:last-child) {
+            margin-bottom: 70px;
+
+            .step-number {
+                &:after {
+                    height: 70px;
+                    width: 2px;
+                    background-color: $secondary;
+                    top: 40px
+                }
+            }
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: $secondary;
+
+            &::before,
+            &::after { 
+                content: '';
+                position: absolute;
+            }
+
+            &::before {
+                width: 52px;
+                height: 52px;
+                border: 2px solid;
+                border-radius: 50%;
+            }
+
+            &.active {
+                background-color: $text_color_primary;
+
+                &::before {
+                    border-color: $text_color_primary;
+                }
+
+                &:after {
+                    background-color: $text_color_primary;
+                }
+            }
         }
     }
 }
