@@ -17,7 +17,7 @@
 				</div>
 				<div class="col-12 col-lg-5">
 					<div class="d-flex justify-content-end">
-						<a class="btn btn-primary rounded-0" aria-current="page" href="{{home_url('/om-oss')}}">
+						<a class="btn btn-primary rounded-0" aria-current="page" href="{{home_url('/stensorter')}}">
 							<div class="d-flex">
 								<span class="pe-2">Läs mer</span>
 								<div class="d-flex align-items-center">
