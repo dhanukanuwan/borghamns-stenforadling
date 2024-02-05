@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -44,14 +43,13 @@ class Borghamns_General_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
-
+		$this->version     = $version;
 	}
 
 	/**
@@ -59,10 +57,28 @@ class Borghamns_General_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/borghamns-general-admin.css', array(), $this->version, 'all' );
-
+	public function borghamn_register_site_blocks() {
+		register_block_type( __DIR__ . '/borghamn-blocks/build/offert/' );
 	}
 
+	/**
+	 * Remove unwanted core blocks.
+	 *
+	 * @since    1.0.0
+	 * @param    array $allowed_blocks .
+	 */
+	public function borghamn_remove_core_blocks( $allowed_blocks ) {
+
+		// get all the registered blocks.
+		$blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
+
+		// then disable some of them.
+		unset( $blocks['core/buttons'] );
+		unset( $blocks['core/columns'] );
+		unset( $blocks['core/row'] );
+
+		// return the new list of allowed blocks.
+		return array_keys( $blocks );
+
+	}
 }

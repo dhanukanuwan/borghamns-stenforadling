@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://https://hashcodeab.se/
+ * @link              https://hashcodeab.se/
  * @since             1.0.0
- * @package           Borghamns_General
+ * @package           borghamns-general
  *
  * @wordpress-plugin
  * Plugin Name:       Borghamns General
- * Plugin URI:        https://https://hashcodeab.se
+ * Plugin URI:        https://hashcodeab.se
  * Description:       All general functionality of the site
  * Version:           1.0.0
  * Author:            Dhanuka Gunarathna
- * Author URI:        https://https://hashcodeab.se/
+ * Author URI:        https://hashcodeab.se/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       borghamns-general

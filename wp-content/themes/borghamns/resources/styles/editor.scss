@@ -1,0 +1,37 @@
+@import "sass/fonts";
+@import "sass/variables";
+@import 'bootstrap/scss/bootstrap';
+@import "sass/page";
+
+.editor-styles-wrapper {
+    padding: 0 2rem;
+    font-family: $font-family-base;
+
+    p,
+    li,
+    a {
+        font-size: $font-size-base;
+        font-family: $font-family-base;
+    }
+    h1, h2, h3, h4 {
+        font-family: $headings-alt;
+        font-weight: $headings-font-weight;
+    }
+
+    h1 {
+        @extend .h1;
+    }
+
+    h2 {
+        @extend .h2;
+    }
+
+    h3 {
+        @extend .h3;
+    }
+
+    h4 {
+        @extend .h4;
+    }
+    
+}
