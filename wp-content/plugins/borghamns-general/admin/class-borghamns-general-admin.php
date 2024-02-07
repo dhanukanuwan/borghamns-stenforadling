@@ -59,6 +59,8 @@ class Borghamns_General_Admin {
 	 */
 	public function borghamn_register_site_blocks() {
 		register_block_type( __DIR__ . '/borghamn-blocks/build/offert/' );
+		register_block_type( __DIR__ . '/borghamn-blocks/build/content-section/' );
+		register_block_type( __DIR__ . '/borghamn-blocks/build/content-column/' );
 	}
 
 	/**

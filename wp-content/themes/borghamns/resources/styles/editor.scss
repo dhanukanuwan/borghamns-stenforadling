@@ -3,35 +3,49 @@
 @import 'bootstrap/scss/bootstrap';
 @import "sass/page";
 
-.editor-styles-wrapper {
-    padding: 0 2rem;
-    font-family: $font-family-base;
-
-    p,
-    li,
-    a {
-        font-size: $font-size-base;
+.edit-post-visual-editor {
+    .editor-styles-wrapper {
+        padding: 0 2rem;
         font-family: $font-family-base;
-    }
-    h1, h2, h3, h4 {
-        font-family: $headings-alt;
-        font-weight: $headings-font-weight;
-    }
-
-    h1 {
-        @extend .h1;
-    }
-
-    h2 {
-        @extend .h2;
-    }
-
-    h3 {
-        @extend .h3;
-    }
-
-    h4 {
-        @extend .h4;
-    }
+        background: $secondary_lite;
     
+        p,
+        li,
+        a {
+            font-size: $font-size-base;
+            font-family: $font-family-base;
+        }
+        h1, h2, h3, h4 {
+            font-family: $headings-alt;
+            font-weight: $headings-font-weight;
+        }
+    
+        h1 {
+            @extend .h1;
+        }
+    
+        h2 {
+            @extend .h2;
+        }
+    
+        h3 {
+            @extend .h3;
+        }
+    
+        h4 {
+            @extend .h4;
+        }
+
+        .wp-block-borghamns-general-content-section {
+            .block-editor-inner-blocks {
+                @extend .container;
+
+                .block-editor-block-list__layout {
+                    @extend .row;
+                }
+            }
+        }
+        
+    }
+
 }
