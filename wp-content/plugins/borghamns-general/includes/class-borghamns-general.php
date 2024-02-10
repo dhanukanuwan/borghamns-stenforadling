@@ -163,8 +163,10 @@ class Borghamns_General {
 		$borghamns_cpt = new Borghamns_CPT( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_admin, 'borghamn_register_site_blocks' );
+		$this->loader->add_action( 'init', $plugin_admin, 'borghamn_register_team_dynamic_block' );
+		$this->loader->add_action( 'acf/include_fields', $plugin_admin, 'borghamn_register_acf_field_groups' );
+
 		$this->loader->add_filter( 'allowed_block_types_all', $plugin_admin, 'borghamn_remove_core_blocks' );
-		$this->loader->add_filter( 'acf/include_fields', $plugin_admin, 'borghamn_register_acf_field_groups' );
 
 		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_team_post_type' );
 

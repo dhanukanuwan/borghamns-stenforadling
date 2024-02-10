@@ -84,7 +84,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<InnerBlocks template={ COLUMN_TEMPLATE } allowedBlocks={['borghamns-general/section-header-tag', 'core/heading', 'core/paragraph', 'borghamns-general/button', 'core/image']} />
+				<InnerBlocks template={ COLUMN_TEMPLATE } allowedBlocks={['borghamns-general/section-header-tag', 'core/heading', 'core/paragraph', 'borghamns-general/button', 'core/image', 'borghamns-general/team-members']} />
 			</div>
 		</>
 	);

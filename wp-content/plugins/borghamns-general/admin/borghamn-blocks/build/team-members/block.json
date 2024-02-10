@@ -18,14 +18,15 @@
     },
     "itemsNum": {
       "type": "integer",
-      "default": 0
+      "default": 6
     },
     "displayIds": {
-      "type": "string"
+      "type": "array",
+      "default": []
     },
     "columns": {
       "type": "integer",
-      "default": 4
+      "default": 3
     }
   },
   "example": {},
