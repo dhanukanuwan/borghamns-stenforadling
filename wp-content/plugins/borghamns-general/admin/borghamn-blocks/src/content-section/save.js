@@ -16,7 +16,7 @@ export default function save( { attributes } ) {
 		}
 
 	} else {
-		sectionClasses = 'py-5 py-xl-6';
+		sectionClasses = 'position-relative';
 	}
 
 	if ( !bgType || ( bgType && bgType.length === 0 ) ) {
@@ -32,11 +32,30 @@ export default function save( { attributes } ) {
 
 	return (
 		<section {...useBlockProps.save()} className={classNames}>
-			<div className="container">
+
+			{ bgType === 'image' && bgImage.mediaId && 
+				<>
+					<div className="hero-bg position-absolute w-100 h-100 top-0 left-0 d-flex">
+						<img src={bgImage.mediaUrl} className="w-100 object-fit-cover" />
+					</div>
+					<div class="hero-content position-relative py-5 py-xl-6">
+						<div className="container">
+							<div className="row">
+								<InnerBlocks.Content />
+							</div>
+						</div>
+					</div>
+				</>
+			}
+
+			{ bgType !== 'image' &&
+				<div className="container">
 					<div className="row">
 						<InnerBlocks.Content />
 					</div>
 				</div>
+			}
+			
 		</section>
 	);
 }

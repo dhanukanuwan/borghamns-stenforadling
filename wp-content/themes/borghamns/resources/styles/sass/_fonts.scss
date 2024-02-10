@@ -2,7 +2,7 @@
     font-family: 'internacional';
     src: url('~@fonts/internacional-bold-webfont.woff2') format('woff2'),
          url('~@fonts/internacional-bold-webfont.woff') format('woff');
-    font-weight: 700;
+    font-weight: 500;
     font-style: normal;
 
 }
@@ -22,6 +22,15 @@
          url('~@fonts/internacional-thin-webfont.woff') format('woff');
     font-weight: 300;
     font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'internacional';
+  src: url('~@fonts/internacionalalt-black-webfont.woff2') format('woff2'),
+       url('~@fonts/internacionalalt-black-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
 
 }
 

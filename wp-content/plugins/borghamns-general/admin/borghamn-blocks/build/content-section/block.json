@@ -15,7 +15,11 @@
       "type": "string"
     },
     "bgImage": {
-      "type": "string"
+      "type": "object",
+      "default": {
+        "mediaUrl": "",
+        "mediaId": 0
+      }
     }
   },
   "example": {},
@@ -25,6 +29,5 @@
   "textdomain": "content-section",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "style": "file:./style-index.css"
 }

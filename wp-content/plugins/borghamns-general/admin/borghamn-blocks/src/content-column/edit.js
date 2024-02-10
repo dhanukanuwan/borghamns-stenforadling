@@ -21,6 +21,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		className: sectionClasses,
 	} );
 
+	const COLUMN_TEMPLATE = [
+		[ 'core/paragraph', { placeholder: 'Lorem Ipsum ....' } ],
+	];
+
 	return (
 		<>
 			<InspectorControls>
@@ -68,7 +72,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									},
 									{
 										value: '3',
-										label: __('2 ( 25% )','borghamns-general'),
+										label: __('3 ( 25% )','borghamns-general'),
 									}
 								] }
 							/>
@@ -80,7 +84,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<InnerBlocks />
+				<InnerBlocks template={ COLUMN_TEMPLATE } allowedBlocks={['borghamns-general/section-header-tag', 'core/heading', 'core/paragraph', 'borghamns-general/button', 'core/image']} />
 			</div>
 		</>
 	);

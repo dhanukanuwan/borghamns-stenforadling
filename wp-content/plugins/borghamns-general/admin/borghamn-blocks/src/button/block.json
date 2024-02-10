@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "borghamns-general/button",
+	"version": "0.1.0",
+	"title": "Button",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Button block.",
+	"attributes": {
+		"btnText": {
+			"type": "string",
+			"default": "Visa mer"
+		},
+		"url": {
+			"type": "string",
+			"default": "#"
+		},
+		"btnColor": {
+			"type": "string",
+			"default": "dark-text"
+		},
+		"align": {
+			"type": "string"
+		},
+		"hideIcon": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "button",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

@@ -61,6 +61,10 @@ class Borghamns_General_Admin {
 		register_block_type( __DIR__ . '/borghamn-blocks/build/offert/' );
 		register_block_type( __DIR__ . '/borghamn-blocks/build/content-section/' );
 		register_block_type( __DIR__ . '/borghamn-blocks/build/content-column/' );
+		register_block_type( __DIR__ . '/borghamn-blocks/build/button/' );
+		register_block_type( __DIR__ . '/borghamn-blocks/build/section-header/' );
+		register_block_type( __DIR__ . '/borghamn-blocks/build/section-header-tag/' );
+		register_block_type( __DIR__ . '/borghamn-blocks/build/team-members/' );
 	}
 
 	/**
@@ -81,6 +85,16 @@ class Borghamns_General_Admin {
 
 		// return the new list of allowed blocks.
 		return array_keys( $blocks );
+	}
 
+	/**
+	 * Register ACF field groups.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_acf_field_groups() {
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/page-hero-settings.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/team-member-info.php';
 	}
 }

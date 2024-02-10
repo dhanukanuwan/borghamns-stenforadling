@@ -10,7 +10,6 @@ h6,
 .h4,
 .h5,
 .h6 {
-    text-transform: uppercase;
     &.liten {
         font-family: $headings-alt;
         text-transform: none;
@@ -133,6 +132,38 @@ h6,
     &[aria-expanded="true"] {
         h3 {
             color: $white;
+        }
+    }
+}
+
+.wp-block-borghamns-general-content-column {
+    .wp-block-image {
+
+        a {
+            @extend .p-2;
+            @extend .bg-white;
+            @extend .d-flex;
+
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top:0;
+                left: 0;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                background-color: transparentize($primary, 0.5);
+
+            }
+
+            &:hover {
+                &::after {
+                    opacity: 1;
+                }
+            }
         }
     }
 }

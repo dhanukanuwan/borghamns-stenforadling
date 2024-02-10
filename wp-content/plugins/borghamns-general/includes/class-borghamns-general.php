@@ -127,6 +127,8 @@ class Borghamns_General {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-borghamns-general-public.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-borghamns-cpt.php';
+
 		$this->loader = new Borghamns_General_Loader();
 
 	}
@@ -157,10 +159,14 @@ class Borghamns_General {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Borghamns_General_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin  = new Borghamns_General_Admin( $this->get_plugin_name(), $this->get_version() );
+		$borghamns_cpt = new Borghamns_CPT( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_admin, 'borghamn_register_site_blocks' );
 		$this->loader->add_filter( 'allowed_block_types_all', $plugin_admin, 'borghamn_remove_core_blocks' );
+		$this->loader->add_filter( 'acf/include_fields', $plugin_admin, 'borghamn_register_acf_field_groups' );
+
+		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_team_post_type' );
 
 	}
 

@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
-import { TextControl, PanelBody, PanelRow, SelectControl } from '@wordpress/components';
+import { useBlockProps, InspectorControls, useInnerBlocksProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { Fragment } from '@wordpress/element';
+import { PanelBody, PanelRow, SelectControl, Button } from '@wordpress/components';
 
 import './editor.scss';
 
@@ -20,17 +21,37 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { bgImage: newBgImage } );
 	}
 
-	let sectionClasses = 'py-5 py-xl-6';
+	const onSelectMedia = (media) => {
+		setAttributes({
+			bgImage: {
+				mediaId: media.id,
+				mediaUrl: media.url
+			}
+		});
+
+		//console.log( media );
+	}
+
+	const removeMedia = () => {
+		setAttributes({
+			bgImage: {
+				mediaId: 0,
+				mediaUrl: ''
+			}
+		});
+	}
+
+	let sectionClasses = '';
 
 	if ( bgColor && ( bgType && bgType === 'color' ) ) {
 		sectionClasses = `${sectionClasses} bg-${bgColor}`;
 		
 		if ( bgColor === 'primary' || bgColor === 'dark-text' ) {
-			sectionClasses = `${sectionClasses} text-white`;
+			sectionClasses = `${sectionClasses} py-5 py-xl-6 text-white`;
 		}
 
 	} else {
-		sectionClasses = 'py-5 py-xl-6';
+		sectionClasses = 'position-relative';
 	}
 
 	if ( !bgType || ( bgType && bgType.length === 0 ) ) {
@@ -41,9 +62,13 @@ export default function Edit( { attributes, setAttributes } ) {
 		className: sectionClasses,
 	} );
 
+	const innerBlocksProps = useInnerBlocksProps({
+		className: 'row',
+	});
+
 	return (
 
-		<>
+		<Fragment>
 			<InspectorControls>
 
 				<PanelBody title={ __( 'Settings', 'borghamns-general' ) } initialOpen={ true }>
@@ -107,15 +132,59 @@ export default function Edit( { attributes, setAttributes } ) {
 					}
 
 					{ bgType === 'image' &&
-						<PanelRow>
-							<fieldset>
-								<TextControl
-									label={ __( 'Image url', 'basic-block' ) }
-									value={ bgImage }
-									onChange={ onChangeBgImage }
-								/>
-							</fieldset>
-						</PanelRow>
+						<>
+							<PanelRow>
+								<h2 className="components-panel__body-title">{__('Background image','borghamns-general')}</h2>
+							</PanelRow>
+							<PanelRow>
+								<MediaUploadCheck>
+									<MediaUpload
+										onSelect={onSelectMedia}
+										multiple={false}
+										allowedTypes={ ['image'] }
+										value={bgImage.mediaId}
+										render={({ open }) => (
+											<>
+												<Button className={bgImage.mediaId == 0 ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview'} onClick={open} >
+														{bgImage.mediaId == 0 && __('Choose an image', 'borghamns-general')}
+
+														{bgImage.mediaUrl &&
+															<img src={bgImage.mediaUrl} />
+														}
+														
+												</Button>
+											</>
+										)}
+									/>
+								</MediaUploadCheck>
+
+							</PanelRow>
+
+							{ bgImage.mediaId != 0 &&
+								<PanelRow>
+									<MediaUploadCheck>
+										<MediaUpload
+											title={__('Replace image', 'borghamns-general')}
+											value={bgImage.mediaId}
+											onSelect={onSelectMedia}
+											allowedTypes={['image']}
+											render={({open}) => (
+												<Button onClick={open} variant="secondary" isLarge>{__('Replace image', 'borghamns-general')}</Button>
+											)}
+										/>
+									</MediaUploadCheck>
+								</PanelRow>
+								
+							}
+
+							{bgImage.mediaId != 0 && 
+								<PanelRow>
+									<MediaUploadCheck>
+										<Button onClick={removeMedia} variant="link" isDestructive>{__('Remove image', 'borghamns-general')}</Button>
+									</MediaUploadCheck>
+								</PanelRow>
+							}
+						</>
 					}
 
 				</PanelBody>
@@ -123,9 +192,27 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<section { ...blockProps }>
-				<InnerBlocks />
+				
+				{ bgType === 'image' && bgImage.mediaId && 
+					<>
+						<div className="hero-bg position-absolute w-100 h-100 top-0 left-0 d-flex">
+							<img src={bgImage.mediaUrl} className="w-100 object-fit-cover" />
+						</div>
+						<div className="hero-content position-relative py-5 py-xl-6">
+							<div className="container">
+								<div {...innerBlocksProps} />
+							</div>
+						</div>
+					</>
+				}
+
+				{ bgType !== 'image' &&
+					<div className="container">
+						<div {...innerBlocksProps} />
+					</div>
+				}
 			</section>
-		</>
+		</Fragment>
 		
 	);
 }

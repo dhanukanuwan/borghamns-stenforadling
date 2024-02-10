@@ -15,8 +15,8 @@
             font-size: $font-size-base;
             font-family: $font-family-base;
         }
-        h1, h2, h3, h4 {
-            font-family: $headings-alt;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: $headings-font-family;
             font-weight: $headings-font-weight;
         }
     
@@ -36,15 +36,22 @@
             @extend .h4;
         }
 
-        .wp-block-borghamns-general-content-section {
-            .block-editor-inner-blocks {
-                @extend .container;
-
-                .block-editor-block-list__layout {
-                    @extend .row;
-                }
-            }
+        h5 {
+            @extend .h5;
         }
+
+        h6 {
+            @extend .h6;
+        }
+        // .wp-block-borghamns-general-content-section {
+        //     & > .block-editor-inner-blocks {
+        //         @extend .container;
+
+        //         // .block-editor-block-list__layout {
+        //         //     @extend .row;
+        //         // }
+        //     }
+        // }
         
     }
 
