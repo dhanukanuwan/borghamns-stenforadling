@@ -5,8 +5,65 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-offert {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+ $secondary: #e3e7e9;
+ $text_color_primary: #383838;
+
+ .dynamic-steps-outer {
+    .dynamic-step {
+
+        &:not(:last-child) {
+            margin-bottom: 70px;
+
+            .step-number {
+                &:after {
+                    height: 70px;
+                    width: 2px;
+                    background-color: $secondary;
+                    top: 40px
+                }
+            }
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: $secondary;
+
+            &::before,
+            &::after { 
+                content: '';
+                position: absolute;
+            }
+
+            &::before {
+                width: 52px;
+                height: 52px;
+                border: 2px solid;
+                border-radius: 50%;
+            }
+
+            &.active {
+                background-color: $text_color_primary;
+
+                &::before {
+                    border-color: $text_color_primary;
+                }
+
+                &:after {
+                    background-color: $text_color_primary;
+                }
+            }
+        }
+    }
+}
+
+.mw-200 {
+	max-width: 200px;
+}
+
+ @media (min-width: 992px)  {
+	.offer-img-wrap {
+		min-height: 700px;
+		max-height: 1000px;
+	}
 }

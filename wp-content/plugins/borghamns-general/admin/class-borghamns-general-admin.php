@@ -183,7 +183,24 @@ class Borghamns_General_Admin {
 		wp_reset_postdata();
 
 		return $output;
+	}
 
+	/**
+	 * Register options pages.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_acf_options_pages() {
+
+		acf_add_options_page(
+			array(
+				'page_title' => 'Begär offert',
+				'menu_slug'  => 'begar-offert',
+				'icon_url'   => 'dashicons-forms',
+				'position'   => '',
+				'redirect'   => false,
+			),
+		);
 	}
 
 	/**

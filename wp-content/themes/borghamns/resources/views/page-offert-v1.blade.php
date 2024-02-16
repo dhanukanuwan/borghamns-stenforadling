@@ -46,8 +46,6 @@
 
 					<div class="bg-white p-4 h-100 d-flex flex-column">
 						<h2 class="h3 liten">Step 1</h2>
-						<p>Använd vår funktion nedan för att skicka en offertförfrågan. Börja med att välja vilken produkt du är ute efter och ange sedan vilka material och behandlingar du vill ha. 
-							Observera att alla visningsbilder kanske inte överensstämmer med dina val. Vi arbetar på att byta ut och göra alla bilder relevanta.</p>
 
 							<div class="row mt-5 flex-grow-1">
 								<div class="col-12 col-lg-4">

@@ -165,6 +165,7 @@ class Borghamns_General {
 		$this->loader->add_action( 'init', $plugin_admin, 'borghamn_register_site_blocks' );
 		$this->loader->add_action( 'init', $plugin_admin, 'borghamn_register_team_dynamic_block' );
 		$this->loader->add_action( 'acf/include_fields', $plugin_admin, 'borghamn_register_acf_field_groups' );
+		$this->loader->add_action( 'acf/init', $plugin_admin, 'borghamn_register_acf_options_pages' );
 
 		$this->loader->add_filter( 'allowed_block_types_all', $plugin_admin, 'borghamn_remove_core_blocks' );
 

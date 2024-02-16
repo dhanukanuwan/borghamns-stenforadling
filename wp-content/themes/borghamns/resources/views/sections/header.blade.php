@@ -7,9 +7,12 @@
 @endphp
 
 <section class="hero position-relative">
-	<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
-		<img src="@asset('images/home-banner.jpg')" class="w-100 object-fit-cover" alt="" />
-	</div>
+	@if ( ! empty( $hero_data['hero_image']) )
+		<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
+			<img src="{{$hero_data['hero_image']}}" class="w-100 object-fit-cover" alt="" />
+		</div>
+	@endif
+	
 	<div class="hero-content position-absolute top-0 left-0 w-100 h-100 d-flex flex-column">
 		<nav class="navbar navbar-expand-xl">
 			<div class="container">
@@ -90,13 +93,19 @@
 			
 			<div class="d-flex align-items-center flex-grow-1">
 				<div class="container">
-					<div class="row">
-						<div class="col-12 text-center">
+					<div class="row justify-content-center">
+						<div class="col-12 col-lg-10 text-center">
 
 							@if ( is_404())
 								<h1 class="text-white not-found-h1 mb-0">404</h1>
 							@else
-								<h1 class="text-white liten">{{the_title()}}</h1>
+								<h1 class="text-white liten">{{$hero_data['page_title']}}</h1>
+
+								@if (! empty( $hero_data['page_description'] ) )
+									<div class="mb-4 text-white">
+										{!! $hero_data['page_description'] !!}
+									</div>
+								@endif
 
 								<div class="bg-white px-4 py-3 d-inline-block">
 									<div class="d-flex">
