@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 const images = require.context('../images/step-0', true);
 const imageList = images.keys().map(image => images(image));
 
@@ -8,9 +8,21 @@ const StepZero = (props) => {
     const [productType, setProductType] = useState('bankskivor');
     const { onProductSelect } = props;
 
+    useEffect(() => {
+		
+		const savedProductType = localStorage.getItem('borg_product_type');
+
+		if ( savedProductType ) {
+			setProductType( savedProductType );
+		}
+
+	}, []);
+
     const handleProductSelect = ( product ) => {
         setProductType(product);
         onProductSelect(product);
+
+        localStorage.setItem('borg_product_type', product);
     }
 
     return (

@@ -4,6 +4,8 @@ import { useState } from '@wordpress/element';
 
 import StepZero from './steps/step-0';
 import StoneType from './steps/stone-type';
+import StepTwo from './steps/step-two';
+import StepThree from './steps/step-three';
 
 import sidebarImg from './images/offert-img.jpg';
 import './editor.scss';
@@ -17,12 +19,13 @@ export default function Edit() {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [selectedProductType, setSelectedProductType] = useState('bankskivor');
 	const [stoneType, setStoneType] = useState('kolmardsmarmor-ox');
+	const [selectedFormType, setSelectedFormType] = useState('l-kok');
 
 	return (
 		<section { ...blockProps }>
 			<div className="container">
 			<div className="row g-0">
-				<div className="col-12 col-lg-4">
+				<div className="col-12 col-lg-2">
 					<div className="offer-img-wrap position-relative h-100">
 						<div className="hero-bg position-absolute w-100 h-100 top-0 left-0 d-flex">
 							<img src={sidebarImg} className="w-100 object-fit-cover" alt="" />
@@ -48,7 +51,7 @@ export default function Edit() {
 					</div>
 				</div>
 
-				<div className="col-12 col-lg-8 position-relative">
+				<div className="col-12 col-lg-10 position-relative">
 
 					<div className="bg-white p-4 h-100 d-flex flex-column">
 						
@@ -58,6 +61,21 @@ export default function Edit() {
 
 						{currentStep === 1 &&
 							<StoneType onStoneSelect={(type) => setStoneType(type)} />
+						}
+
+						{currentStep === 2 &&
+							<StepTwo
+								selectedProduct={selectedProductType}
+								stoneType={stoneType}
+								onFormSelect={(type) => setSelectedFormType(type)}
+							/>
+						}
+
+						{currentStep === 3 &&
+							<StepThree
+								selectedProduct={selectedProductType}
+								formType={selectedFormType}
+							/>
 						}
 
 						<div className="mt-auto">
