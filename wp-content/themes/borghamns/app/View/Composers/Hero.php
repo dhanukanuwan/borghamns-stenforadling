@@ -71,6 +71,22 @@ class Hero extends Composer {
 			'page_description' => $page_description,
 		);
 
+		if ( is_front_page() ) {
+
+			$hero_tagline = get_field( 'hero_tagline' );
+			$hero_title   = get_field( 'hero_title' );
+			$hero_cta     = get_field( 'hero_cta' );
+			$hero_images  = get_field( 'hero_images' );
+
+			$hero_data['home_hero'] = array(
+				'tagline' => $hero_tagline,
+				'title'   => $hero_title,
+				'cta'     => $hero_cta,
+				'images'  => $hero_images,
+			);
+
+		}
+
 		return $hero_data;
 	}
 }

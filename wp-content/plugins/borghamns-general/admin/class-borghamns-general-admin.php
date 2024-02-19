@@ -139,8 +139,6 @@ class Borghamns_General_Admin {
 
 		if ( $team_query->have_posts() ) {
 
-			$output .= '<div class="row">';
-
 			while ( $team_query->have_posts() ) {
 				$team_query->the_post();
 
@@ -175,8 +173,6 @@ class Borghamns_General_Admin {
 				$output .= '</div>';
 
 			}
-
-			$output .= '</div>';
 
 		}
 
@@ -232,5 +228,6 @@ class Borghamns_General_Admin {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/page-hero-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/team-member-info.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/homepage-hero.php';
 	}
 }

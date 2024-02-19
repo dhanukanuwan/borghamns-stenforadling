@@ -217,6 +217,8 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 
 		$output .= $indent . '<li ' . $id . $class_names . '>';
 
+		$dropdown_icon = '';
+
 		// Initialize array for holding the $atts for the link item.
 		$atts           = array();
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
@@ -232,7 +234,9 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 			$atts['href']          = $item->url;
 			$atts['aria-haspopup'] = 'true';
 			$atts['aria-expanded'] = 'false';
-			$atts['class']         = 'nav-link text-white dropdown-toggle';
+			$atts['class']         = 'nav-link text-white';
+
+			$dropdown_icon = '<span class="icon-ion-chevron-down ms-1"></span>';
 
 			if ( is_string( $args->menu_class ) ) {
 				$classes_array = explode( ' ', $args->menu_class );
@@ -334,7 +338,7 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 		}
 
 		// Put the item contents into $output.
-		$item_output .= isset( $args->link_before ) ? $args->link_before . $icon_html . $title . $args->link_after : '';
+		$item_output .= isset( $args->link_before ) ? $args->link_before . $icon_html . $title . $dropdown_icon . $args->link_after : '';
 
 		/*
 			* This is the end of the internal nav item. We need to close the

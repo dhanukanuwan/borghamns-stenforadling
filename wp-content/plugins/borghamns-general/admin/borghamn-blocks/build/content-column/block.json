@@ -10,6 +10,12 @@
   "attributes": {
     "columnSize": {
       "type": "string"
+    },
+    "columnBg": {
+      "type": "string"
+    },
+    "columnPadding": {
+      "type": "string"
     }
   },
   "example": {},

@@ -30,9 +30,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		} );
 	};
 
-	let btnClasses = `btn text-decoration-none rounded-0 ${ btnColor ? `btn-${btnColor}`: ''}`;
+	let btnClasses = `btn mt-auto text-decoration-none rounded-0 ${ btnColor ? `btn-${btnColor}`: ''}`;
 
-	let wrapperClasses = 'd-flex';
+	let wrapperClasses = 'd-flex flex-grow-1';
 
 	if ( align ) {
 		

@@ -5,13 +5,34 @@ import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
 
-	const { columnSize  } = attributes;
+	const { columnSize, columnBg, columnPadding  } = attributes;
 
 	const onChangeColumnSize = ( newColumnSize ) => {
 		setAttributes( { columnSize: newColumnSize } );
 	}
 
-	let sectionClasses = 'col-12';
+	const onChangeColumnBg = ( newBg ) => {
+		setAttributes( { columnBg: newBg } );
+	}
+
+	const onChangeColumnPadding = ( newPadding ) => {
+		setAttributes( { columnPadding: newPadding } );
+	}
+
+	let sectionClasses = 'col-12 position-relative';
+	let columnInnerClasses = 'd-flex flex-column h-100';
+
+	if ( columnBg ) {
+		columnInnerClasses = `${columnInnerClasses} bg-${columnBg}`;
+
+		if ( columnBg === 'primary' || columnBg === 'dark-text' ) {
+			columnInnerClasses = `${columnInnerClasses} text-white`;
+		}
+	}
+
+	if ( columnPadding && columnPadding !== '0' ) {
+		columnInnerClasses = `${columnInnerClasses} p-${columnPadding}`;
+	}
 
 	if ( columnSize ) {
 		sectionClasses = `${sectionClasses} col-lg-${columnSize}`;
@@ -79,12 +100,78 @@ export default function Edit( { attributes, setAttributes } ) {
 						</fieldset>
 					</PanelRow>
 
+					<PanelRow>
+						<fieldset>
+							<SelectControl
+								label={ __('Background Color','borghamns-general') }
+								value={ columnBg }
+								onChange={ onChangeColumnBg }
+								options={ [
+									{
+										value: 'transparent',
+										label: __('Default','borghamns-general'),
+									},
+									{
+										value: 'primary',
+										label: __('Green','borghamns-general'),
+									},
+									{
+										value: 'secondary',
+										label: __('Gray','borghamns-general'),
+									},
+									{
+										value: 'dark-text',
+										label: __('Dark','borghamns-general'),
+									},
+									{
+										value: 'white',
+										label: __('White','borghamns-general'),
+									},
+								] }
+							/>
+						</fieldset>
+					</PanelRow>
+
+					<PanelRow>
+						<fieldset>
+							<SelectControl
+								label={ __('Padding Size','borghamns-general') }
+								value={ columnPadding }
+								onChange={ onChangeColumnPadding }
+								options={ [
+									{
+										value: '0',
+										label: __('Default','borghamns-general'),
+									},
+									{
+										value: '1',
+										label: __('1','borghamns-general'),
+									},
+									{
+										value: '2',
+										label: __('2','borghamns-general'),
+									},
+									{
+										value: '3',
+										label: __('3','borghamns-general'),
+									},
+									{
+										value: '4',
+										label: __('4','borghamns-general'),
+									},
+								] }
+							/>
+						</fieldset>
+					</PanelRow>
+
 				</PanelBody>
 
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<InnerBlocks template={ COLUMN_TEMPLATE } allowedBlocks={['borghamns-general/section-header-tag', 'core/heading', 'core/paragraph', 'borghamns-general/button', 'core/image', 'borghamns-general/team-members']} />
+				<div className={columnInnerClasses}>
+					<InnerBlocks template={ COLUMN_TEMPLATE } allowedBlocks={['borghamns-general/section-header-tag', 'core/heading', 'core/paragraph', 'borghamns-general/button', 'core/image', 'borghamns-general/team-members']} />
+				</div>
 			</div>
 		</>
 	);

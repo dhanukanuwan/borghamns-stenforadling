@@ -1,8 +1,10 @@
 @php
 	$hero_height = '400px';
+	$home_hero = array();
 
 	if ( is_front_page() ) {
 		$hero_height = '600px';
+		$home_hero = $hero_data['home_hero'];
 	}
 @endphp
 
@@ -57,33 +59,45 @@
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-12 col-lg-5">
-							<div class="d-flex align-items-center">
-								<span class="line-right bg-white d-inline-block"></span>
-								<span class="ps-2 text-white">Välkommen till Borghamns Stenförädling AB</span>
-							</div>
-							<h1 class="text-white liten h2">Ett familjeföretag, grundat 1951</h1>
-							<a class="btn btn-primary rounded-0" aria-current="page" href="{{home_url('/om-oss')}}">
-								<div class="d-flex">
-									<span class="pe-2">Läs mer</span>
-									<div class="d-flex align-items-center">
-										<span class="line-right bg-white d-inline-block" style="margin-right: -12px;"></span>
-										<span class="icon-ion-ios-arrow-right"></span>
-									</div>
+
+							@if ( isset( $home_hero['tagline'] ) && !empty( $home_hero['tagline'] ))
+								<div class="d-flex align-items-center">
+									<span class="line-right bg-white d-inline-block"></span>
+									<span class="ps-2 text-white">{!! $home_hero['tagline'] !!}</span>
 								</div>
-							</a>
+							@endif
+
+							@if ( isset( $home_hero['title'] ) && !empty( $home_hero['title'] ))
+								<h1 class="text-white liten h2">{!! $home_hero['title'] !!}</h1>
+							@endif
+
+							@if ( isset( $home_hero['cta'] ) && !empty( $home_hero['cta'] ))
+								<a class="btn btn-primary rounded-0" aria-current="page" href="{{$home_hero['cta']['url']}}" {{ $home_hero['cta']['target'] === '_blank' ? 'target="_blank"' : '' }}>
+									<div class="d-flex">
+										<span class="pe-2">{!! $home_hero['cta']['title'] !!}</span>
+										<div class="d-flex align-items-center">
+											<span class="line-right bg-white d-inline-block" style="margin-right: -12px;"></span>
+											<span class="icon-ion-ios-arrow-right"></span>
+										</div>
+									</div>
+								</a>
+							@endif
+							
+							
 						</div>
 						<div class="col-12 col-lg-7">
-							<div class="d-none d-lg-flex">
-								<div class="hero-img-1 d-flex align-items-center">
-									<img src="@asset('images/home-new-4.png')" class="" alt="">
+
+							@if ( isset( $home_hero['images'] ) && !empty( $home_hero['images'] ))
+								<div class="d-none d-lg-flex">
+									@php $i = 1; @endphp
+									@foreach ($home_hero['images'] as $image)
+										<div class="hero-img-{{$i}} d-flex align-items-center">
+											<img src="{{$image['url']}}" alt="{{$image['alt']}}" title="{{$image['title']}}" />
+										</div>
+									@php $i++; @endphp
+									@endforeach
 								</div>
-								<div class="hero-img-2 d-flex align-items-center">
-									<img src="@asset('images/new-home-5.png')" class="" alt="">
-								</div>
-								<div class="hero-img-3 d-flex align-items-center">
-									<img src="@asset('images/home-new-3.png')" class="" alt="">
-								</div>
-							</div>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -111,7 +125,7 @@
 									<div class="d-flex">
 										<a href="{{home_url('/')}}" class="text-dark-text link-underline link-underline-opacity-0">
 											<span class="icon-ion-home"></span>
-											<span>Hem</span>
+											<span>{{ __( 'Hem', 'sage')}}</span>
 										</a>
 										<span class="mx-2">
 											<span class="icon-ion-ios-arrow-right"></span>

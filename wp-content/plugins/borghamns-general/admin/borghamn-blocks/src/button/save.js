@@ -5,9 +5,9 @@ export default function save( { attributes } ) {
 
 	const { btnText, url, btnColor, hideIcon, align  } = attributes;
 
-	let btnClasses = `btn rounded-0 ${ btnColor ? `btn-${btnColor}`: ''}`;
+	let btnClasses = `btn mt-auto rounded-0 ${ btnColor ? `btn-${btnColor}`: ''}`;
 
-	let wrapperClasses = 'd-flex';
+	let wrapperClasses = 'd-flex flex-grow-1';
 
 	if ( align ) {
 		
