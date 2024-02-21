@@ -11,7 +11,7 @@
 <section class="hero position-relative">
 	@if ( ! empty( $hero_data['hero_image']) )
 		<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
-			<img src="{{$hero_data['hero_image']}}" class="w-100 object-fit-cover" alt="" />
+			<img src="{{$hero_data['hero_image']['url']}}" class="w-100 object-fit-cover" alt="" />
 		</div>
 	@endif
 	

@@ -77,6 +77,7 @@ class Hero extends Composer {
 
 			if ( ! empty( $queried_object ) && isset( $queried_object->name ) ) {
 				$page_title = $queried_object->name;
+
 			}
 		}
 
