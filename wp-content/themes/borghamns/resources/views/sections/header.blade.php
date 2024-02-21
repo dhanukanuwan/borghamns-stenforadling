@@ -29,18 +29,6 @@
 				<div class="container">
 					<div class="collapse navbar-collapse" >
 						<ul class="navbar-nav mb-0 ms-auto">
-							<li class="nav-item">
-								<a href="{{home_url('/bildgalleri')}}" class="nav-link text-white text-size-medium">Gallery</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{home_url('/alla-dokument')}}" class="nav-link text-white text-size-medium">Document</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{home_url('/om-oss')}}" class="nav-link text-white text-size-medium">Om oss</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{home_url('/kontakta-oss')}}" class="nav-link text-white text-size-medium">Kontakt</a>
-							</li>
 							<li class="nav-item dropdown">
 								<a href="{{home_url('/')}}" class="nav-link text-white text-size-medium d-flex">
 									<span class="d-flex align-items-center">
