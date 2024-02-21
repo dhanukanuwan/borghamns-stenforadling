@@ -46,9 +46,15 @@ class Hero extends Composer {
 			return $hero_data;
 		}
 
-		$hero_image        = get_field( 'hero_image' );
-		$custom_page_title = get_field( 'custom_page_title' );
-		$page_description  = get_field( 'page_description' );
+		$page_id = get_the_ID();
+
+		if ( is_home() ) {
+			$page_id = get_option( 'page_for_posts' );
+		}
+
+		$hero_image        = get_field( 'hero_image', $page_id );
+		$custom_page_title = get_field( 'custom_page_title', $page_id );
+		$page_description  = get_field( 'page_description', $page_id );
 
 		$page_title = get_the_title();
 
@@ -62,6 +68,15 @@ class Hero extends Composer {
 
 			if ( $hero_asset ) {
 				$hero_image = $hero_asset->uri();
+			}
+		}
+
+		if ( is_tax() || is_category() ) {
+
+			$queried_object = get_queried_object();
+
+			if ( ! empty( $queried_object ) && isset( $queried_object->name ) ) {
+				$page_title = $queried_object->name;
 			}
 		}
 

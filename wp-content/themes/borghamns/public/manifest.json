@@ -1,7 +1,7 @@
 {
-  "app.css": "css/app.36d807.css",
+  "app.css": "css/app.e1d949.css",
   "app.js": "js/app.c871ce.js",
-  "editor.css": "css/editor.7b34b6.css",
+  "editor.css": "css/editor.42c235.css",
   "editor.js": "js/editor.6948dd.js",
   "runtime.js": "js/runtime.e97f88.js",
   "images/home-new-4.png": "images/home-new-4.f53a97.png",
@@ -79,5 +79,7 @@
   "images/logo-white.png": "images/logo-white.2c344d.png",
   "images/awards/sten.png": "images/awards/sten.76bde3.png",
   "images/ce-white.png": "images/ce-white.ac98b5.png",
+  "images/flags/en.png": "images/flags/en.6fb956.png",
+  "images/flags/sv.png": "images/flags/sv.7205e9.png",
   "entrypoints.json": "entrypoints.json"
 }

@@ -170,7 +170,18 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<div { ...blockProps }>
 				<div className={columnInnerClasses}>
-					<InnerBlocks template={ COLUMN_TEMPLATE } allowedBlocks={['borghamns-general/section-header-tag', 'core/heading', 'core/paragraph', 'borghamns-general/button', 'core/image', 'borghamns-general/team-members']} />
+					<InnerBlocks
+						template={ COLUMN_TEMPLATE }
+						allowedBlocks={[
+							'borghamns-general/section-header-tag',
+							'core/heading',
+							'core/paragraph',
+							'borghamns-general/button',
+							'core/image',
+							'borghamns-general/testimonial',
+							'borghamns-general/faq-block',
+							'borghamns-general/team-members']} 
+					/>
 				</div>
 			</div>
 		</>

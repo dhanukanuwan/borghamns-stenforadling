@@ -182,6 +182,171 @@ class Borghamns_General_Admin {
 	}
 
 	/**
+	 * Register team members dynamic block.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_testimonial_dynamic_block() {
+
+		register_block_type(
+			__DIR__ . '/borghamn-blocks/build/testimonial/',
+			array(
+				'api_version'     => 3,
+				'render_callback' => array( $this, 'borghamn_register_testimonial_dynamic_block_render_callback' ),
+			)
+		);
+	}
+
+	/**
+	 * Register team members dynamic block.
+	 *
+	 * @since    1.0.0
+	 * @param    array  $block_attributes .
+	 * @param    string $content .
+	 */
+	public function borghamn_register_testimonial_dynamic_block_render_callback( $block_attributes, $content ) {
+
+		$output = '';
+
+		$post_ids = null;
+
+		if ( isset( $block_attributes['tetimonialID'] ) && ! empty( $block_attributes['tetimonialID'] ) ) {
+			$post_ids = $block_attributes['tetimonialID'];
+		}
+
+		if ( ! empty( $post_ids ) ) {
+
+			$output .= '<div class="testimonial-wrap d-flex flex-column">';
+
+			foreach ( $post_ids as $post_id ) {
+
+				$testimonial_content = get_field( 'testimonial_content', $post_id );
+				$testi_company       = get_field( 'testi_company', $post_id );
+
+				$output .= '<div class="testimonial-item p-4 p-xl-5 bg-white"><div class="row">';
+
+				if ( has_post_thumbnail( $post_id ) ) {
+					$output .= '<div class="col-3 col-lg-2">';
+					$output .= get_the_post_thumbnail( $post_id, 'full', array( 'class' => 'mw-100' ) );
+					$output .= '</div>';
+				}
+
+				$output .= '<div class="col-9 col-lg-10">';
+
+				if ( ! empty( $testimonial_content ) ) {
+					$output .= $testimonial_content;
+				}
+
+				$output .= '<div class="mt-3 d-flex align-items-center">';
+				$output .= '<div class="flex-grow-1">';
+				$output .= '<h4 class="liten mb-2">' . get_the_title( $post_id ) . '</h4>';
+
+				if ( ! empty( $testi_company ) ) {
+					$output .= '<span class="text-primary">' . $testi_company . '</span>';
+				}
+
+				$output .= '</div>';
+				$output .= '<div><span class="h2 liten text-primary">,,</span></div>';
+				$output .= '</div>';
+
+				$output .= '</div>';
+
+				$output .= '</div></div>';
+
+			}
+
+			$output .= '</div>';
+
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Register FAQ dynamic block.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_faq_dynamic_block() {
+
+		register_block_type(
+			__DIR__ . '/borghamn-blocks/build/faq-block/',
+			array(
+				'api_version'     => 3,
+				'render_callback' => array( $this, 'borghamn_register_faq_dynamic_block_render_callback' ),
+			)
+		);
+	}
+
+	/**
+	 * Register FAQ dynamic block.
+	 *
+	 * @since    1.0.0
+	 * @param    array  $block_attributes .
+	 * @param    string $content .
+	 */
+	public function borghamn_register_faq_dynamic_block_render_callback( $block_attributes, $content ) {
+
+		$output = '';
+
+		$post_ids = null;
+
+		if ( isset( $block_attributes['faqID'] ) && ! empty( $block_attributes['faqID'] ) ) {
+			$post_ids = $block_attributes['faqID'];
+		}
+
+		if ( ! empty( $post_ids ) ) {
+
+			$output .= '<div class="faq-warp">';
+
+			foreach ( $post_ids as $key => $post_id ) {
+
+				$output .= '<div class="accordion" id="accordion-' . $key . '">';
+
+				$faq_block = get_field( 'faq_block', $post_id );
+
+				if ( ! empty( $faq_block ) ) {
+
+					foreach ( $faq_block as $block_key => $block_data ) {
+
+						$expanded  = 'false';
+						$show      = '';
+						$collapsed = 'collapsed';
+
+						if ( 0 === $block_key ) {
+							$expanded  = 'true';
+							$show      = 'show';
+							$collapsed = '';
+						}
+
+						$output .= '<div class="accordion-item mb-2">';
+						$output .= '<h2 class="accordion-header">';
+						$output .= '<button class="accordion-button ' . $collapsed . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-' . $key . '-' . $block_key . '" aria-expanded="' . $expanded . '" aria-controls="collapse-' . $key . '-' . $block_key . '">';
+						$output .= '<h3 class="liten h5 mb-0">' . $block_data['question'] . '</h3>';
+						$output .= '</button>';
+						$output .= '</h2>';
+						$output .= '<div id="collapse-' . $key . '-' . $block_key . '" class="accordion-collapse collapse ' . $show . '" data-bs-parent="#accordion-' . $key . '">';
+						$output .= '<div class="accordion-body">';
+						$output .= $block_data['answer'];
+						$output .= '</div>';
+						$output .= '</div>';
+						$output .= '</div>';
+
+					}
+				}
+
+				$output .= '</div>';
+
+			}
+
+			$output .= '</div>';
+
+		}
+
+		return $output;
+	}
+
+	/**
 	 * Register options pages.
 	 *
 	 * @since    1.0.0
@@ -229,5 +394,7 @@ class Borghamns_General_Admin {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/page-hero-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/team-member-info.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/homepage-hero.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/faq-block-content.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/testimonial-data.php';
 	}
 }

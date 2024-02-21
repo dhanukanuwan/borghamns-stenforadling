@@ -16,6 +16,52 @@
 	@endif
 	
 	<div class="hero-content position-absolute top-0 left-0 w-100 h-100 d-flex flex-column">
+		<div class="small-nav-wrap">
+			<nav class="navbar navbar-expand-xl pb-0">
+				<div class="container">
+					<div class="collapse navbar-collapse" >
+						<ul class="navbar-nav mb-0 ms-auto">
+							<li class="nav-item">
+								<a href="{{home_url('/bildgalleri')}}" class="nav-link text-white text-size-medium">Gallery</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{home_url('/alla-dokument')}}" class="nav-link text-white text-size-medium">Document</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{home_url('/om-oss')}}" class="nav-link text-white text-size-medium">Om oss</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{home_url('/kontakta-oss')}}" class="nav-link text-white text-size-medium">Kontakt</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a href="{{home_url('/')}}" class="nav-link text-white text-size-medium d-flex">
+									<span class="d-flex align-items-center">
+										<img src="@asset('images/flags/sv.png')" alt="" width="20">
+										<span class="ms-2">Svenska</span>
+									</span>
+									<span class="icon-ion-chevron-down ms-1"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{{home_url('/en')}}" class="nav-link text-size-medium">
+											<span class="d-flex align-items-center">
+												<img src="@asset('images/flags/en.png')" alt="" width="20">
+												<span class="ms-2">English</span>
+											</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<button type="btn" class="btn p-0 text-white">
+									<span class="icon-ion-android-search" style="font-size: 24px"></span>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
 		<nav class="navbar navbar-expand-xl">
 			<div class="container">
 				<a class="navbar-brand" href="{{home_url('/')}}">
@@ -39,7 +85,7 @@
 						<li class="nav-item">
 							<a class="btn btn-primary rounded-0" aria-current="page" href="{{home_url('/offert')}}">
 								<div class="d-flex">
-									<span class="pe-2">Begär offert</span>
+									<span class="pe-2">{{__( 'Begär offert', 'sage')}}</span>
 									<div class="d-flex align-items-center">
 										<span class="line-right bg-white d-inline-block" style="margin-right: -12px;"></span>
 										<span class="icon-ion-ios-arrow-right"></span>
@@ -130,7 +176,7 @@
 										<span class="mx-2">
 											<span class="icon-ion-ios-arrow-right"></span>
 										</span>
-										<span class="text-primary">{{the_title()}}</span>
+										<span class="text-primary">{{$hero_data['page_title']}}</span>
 									</div>
 								</div>
 							@endif

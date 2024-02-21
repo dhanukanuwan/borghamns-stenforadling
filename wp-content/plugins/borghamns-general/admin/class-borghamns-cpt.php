@@ -96,8 +96,7 @@ class Borghamns_CPT {
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
-			'menu_position'       => 100,
-			'menu_icon'           => 'dashicons-businessman',
+			'menu_icon'           => 'dashicons-groups',
 			'show_in_admin_bar'   => false,
 			'show_in_nav_menus'   => false,
 			'can_export'          => true,
@@ -135,5 +134,125 @@ class Borghamns_CPT {
 		);
 
 		register_taxonomy( 'department', array( 'team' ), $args );
+	}
+
+	/**
+	 * Register FAQ Blocks post type.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamns_faq_blocks_post_type() {
+
+		$labels = array(
+			'name'                  => _x( 'FAQ Blocks', 'Post Type General Name', 'borghamns-general' ),
+			'singular_name'         => _x( 'FAQ Blocks', 'Post Type Singular Name', 'borghamns-general' ),
+			'menu_name'             => __( 'FAQ Blocks', 'borghamns-general' ),
+			'name_admin_bar'        => __( 'FAQ Blocks', 'borghamns-general' ),
+			'archives'              => __( 'FAQ Block Archives', 'borghamns-general' ),
+			'attributes'            => __( 'FAQ Block Attributes', 'borghamns-general' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'borghamns-general' ),
+			'all_items'             => __( 'All FAQ Blocks', 'borghamns-general' ),
+			'add_new_item'          => __( 'Add New FAQ Block', 'borghamns-general' ),
+			'add_new'               => __( 'Add New FAQ Block', 'borghamns-general' ),
+			'new_item'              => __( 'New FAQ Block', 'borghamns-general' ),
+			'edit_item'             => __( 'Edit FAQ Block', 'borghamns-general' ),
+			'update_item'           => __( 'Update FAQ Block', 'borghamns-general' ),
+			'view_item'             => __( 'View FAQ Block', 'borghamns-general' ),
+			'view_items'            => __( 'View FAQ Block', 'borghamns-general' ),
+			'search_items'          => __( 'Search FAQ Block', 'borghamns-general' ),
+			'not_found'             => __( 'Not found', 'borghamns-general' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'borghamns-general' ),
+			'featured_image'        => __( 'FAQ Block Image', 'borghamns-general' ),
+			'set_featured_image'    => __( 'Set FAQ Block image', 'borghamns-general' ),
+			'remove_featured_image' => __( 'Remove FAQ Block image', 'borghamns-general' ),
+			'use_featured_image'    => __( 'Use as FAQ Block image', 'borghamns-general' ),
+			'insert_into_item'      => __( 'Insert into item', 'borghamns-general' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'borghamns-general' ),
+			'items_list'            => __( 'Items list', 'borghamns-general' ),
+			'items_list_navigation' => __( 'Items list navigation', 'borghamns-general' ),
+			'filter_items_list'     => __( 'Filter items list', 'borghamns-general' ),
+		);
+
+		$args = array(
+			'label'               => __( 'FAQ Blocks', 'borghamns-general' ),
+			'description'         => __( 'FAQ Blocks', 'borghamns-general' ),
+			'labels'              => $labels,
+			'supports'            => array( 'title' ),
+			'hierarchical'        => false,
+			'public'              => false,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'menu_icon'           => 'dashicons-feedback',
+			'show_in_admin_bar'   => false,
+			'show_in_nav_menus'   => false,
+			'can_export'          => true,
+			'has_archive'         => false,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'page',
+			'show_in_rest'        => true,
+		);
+
+		register_post_type( 'faq_block', $args );
+	}
+
+	/**
+	 * Register Testimonial Blocks post type.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamns_testimonial_blocks_post_type() {
+
+		$labels = array(
+			'name'                  => _x( 'Testimonial Blocks', 'Post Type General Name', 'borghamns-general' ),
+			'singular_name'         => _x( 'Testimonial Blocks', 'Post Type Singular Name', 'borghamns-general' ),
+			'menu_name'             => __( 'Testimonial Blocks', 'borghamns-general' ),
+			'name_admin_bar'        => __( 'Testimonial Blocks', 'borghamns-general' ),
+			'archives'              => __( 'Testimonial Block Archives', 'borghamns-general' ),
+			'attributes'            => __( 'Testimonial Block Attributes', 'borghamns-general' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'borghamns-general' ),
+			'all_items'             => __( 'All Testimonial Blocks', 'borghamns-general' ),
+			'add_new_item'          => __( 'Add New Testimonial Block', 'borghamns-general' ),
+			'add_new'               => __( 'Add New Testimonial Block', 'borghamns-general' ),
+			'new_item'              => __( 'New Testimonial Block', 'borghamns-general' ),
+			'edit_item'             => __( 'Edit Testimonial Block', 'borghamns-general' ),
+			'update_item'           => __( 'Update Testimonial Block', 'borghamns-general' ),
+			'view_item'             => __( 'View Testimonial Block', 'borghamns-general' ),
+			'view_items'            => __( 'View Testimonial Block', 'borghamns-general' ),
+			'search_items'          => __( 'Search Testimonial Block', 'borghamns-general' ),
+			'not_found'             => __( 'Not found', 'borghamns-general' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'borghamns-general' ),
+			'featured_image'        => __( 'Testimonial Block Image', 'borghamns-general' ),
+			'set_featured_image'    => __( 'Set Testimonial Block image', 'borghamns-general' ),
+			'remove_featured_image' => __( 'Remove Testimonial Block image', 'borghamns-general' ),
+			'use_featured_image'    => __( 'Use as Testimonial Block image', 'borghamns-general' ),
+			'insert_into_item'      => __( 'Insert into item', 'borghamns-general' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'borghamns-general' ),
+			'items_list'            => __( 'Items list', 'borghamns-general' ),
+			'items_list_navigation' => __( 'Items list navigation', 'borghamns-general' ),
+			'filter_items_list'     => __( 'Filter items list', 'borghamns-general' ),
+		);
+
+		$args = array(
+			'label'               => __( 'Testimonial Blocks', 'borghamns-general' ),
+			'description'         => __( 'Testimonial Blocks', 'borghamns-general' ),
+			'labels'              => $labels,
+			'supports'            => array( 'title', 'thumbnail' ),
+			'hierarchical'        => false,
+			'public'              => false,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'menu_icon'           => 'dashicons-admin-comments',
+			'show_in_admin_bar'   => false,
+			'show_in_nav_menus'   => false,
+			'can_export'          => true,
+			'has_archive'         => false,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'page',
+			'show_in_rest'        => true,
+		);
+
+		register_post_type( 'testimonial_block', $args );
 	}
 }

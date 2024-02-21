@@ -4,6 +4,24 @@
 
     <section class="py-5 py-xl-6">
 		<div class="container">
+
+			@php( $all_categories = get_categories( array( 'parent' => 0 ) ) )
+
+			@if ( $all_categories)
+				<div class="row">
+					<div class="col-12 mb-5">
+
+						<a href="{{home_url('/blogg')}}" class="btn btn-primary me-2 rounded-0">{{ __('Alla', 'sage')}}</a>
+
+						@foreach ($all_categories as $category)
+							<a href="{{get_category_link( $category->term_id )}}" class="btn btn-{{ is_category( $category->term_id ) ? 'dark-text': 'primary'}} me-2 rounded-0">{!! $category->name !!}</a>
+						@endforeach
+
+					</div>
+				</div>
+				
+			@endif
+
 			<div class="row">
 				
 				@while(have_posts()) @php(the_post())
