@@ -9,9 +9,17 @@
 @endphp
 
 <section class="hero position-relative">
-	@if ( ! empty( $hero_data['hero_image']) )
+	@if ( ! empty( $hero_data['hero_image'] ) && empty( $hero_data['hero_video'] ) )
 		<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
-			<img src="{{$hero_data['hero_image']['url']}}" class="w-100 object-fit-cover" alt="" />
+			<img src="{{$hero_data['hero_image']}}" class="w-100 object-fit-cover" alt="" />
+		</div>
+	@endif
+
+	@if ( ! empty( $hero_data['hero_video'] )  )
+		<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
+			<video  class="w-100 object-fit-cover" autoplay="autoplay" loop="true" muted>
+				<source src="{{$hero_data['hero_video']['url']}}" type="video/mp4" />
+			</video>
 		</div>
 	@endif
 	
@@ -176,6 +184,18 @@
 										<span class="mx-2">
 											<span class="icon-ion-ios-arrow-right"></span>
 										</span>
+
+										@if ( $hero_data['post_parent'] && isset( $hero_data['post_parent']->ID ) )
+
+											<a href="{{get_the_permalink( $hero_data['post_parent']->ID )}}" class="text-dark-text link-underline link-underline-opacity-0">
+												<span>{!! get_the_title( $hero_data['post_parent']->ID ) !!}</span>
+											</a>
+											<span class="mx-2">
+												<span class="icon-ion-ios-arrow-right"></span>
+											</span>
+											
+										@endif
+
 										<span class="text-primary">{{$hero_data['page_title']}}</span>
 									</div>
 								</div>

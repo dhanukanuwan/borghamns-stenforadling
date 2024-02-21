@@ -56,6 +56,15 @@ class Hero extends Composer {
 		$custom_page_title = get_field( 'custom_page_title', $page_id );
 		$page_description  = get_field( 'page_description', $page_id );
 
+		$use_video_background = get_field( 'use_video_background', $page_id );
+		$hero_video_array     = get_field( 'hero_video', $page_id );
+
+		$hero_video = null;
+
+		if ( '1' == $use_video_background ) {
+			$hero_video = $hero_video_array;
+		}
+
 		$page_title = get_the_title();
 
 		if ( ! empty( $custom_page_title ) ) {
@@ -69,6 +78,8 @@ class Hero extends Composer {
 			if ( $hero_asset ) {
 				$hero_image = $hero_asset->uri();
 			}
+		} else {
+			$hero_image = $hero_image['url'];
 		}
 
 		if ( is_tax() || is_category() ) {
@@ -81,10 +92,14 @@ class Hero extends Composer {
 			}
 		}
 
+		$post_parent = get_post_parent( get_the_ID() );
+
 		$hero_data = array(
 			'page_title'       => $page_title,
 			'hero_image'       => $hero_image,
 			'page_description' => $page_description,
+			'post_parent'      => $post_parent,
+			'hero_video'       => $hero_video,
 		);
 
 		if ( is_front_page() ) {

@@ -23,6 +23,37 @@ acf_add_local_field_group(
 				'label' => 'Hero Image',
 				'name'  => 'hero_image',
 				'type'  => 'image',
+				'conditional_logic' => array(
+					array(
+						array(
+							'field'    => 'field_use_video_background',
+							'operator' => '!=',
+							'value'    => '1',
+						),
+					),
+				),
+			),
+			array(
+				'key'   => 'field_use_video_background',
+				'label' => 'Use Video Background?',
+				'name'  => 'use_video_background',
+				'type'  => 'true_false',
+				'ui'    => 1,
+			),
+			array(
+				'key'   => 'field_hero_video',
+				'label' => 'Hero Video',
+				'name'  => 'hero_video',
+				'type'  => 'file',
+				'conditional_logic' => array(
+					array(
+						array(
+							'field'    => 'field_use_video_background',
+							'operator' => '==',
+							'value'    => '1',
+						),
+					),
+				),
 			),
 			array(
 				'key'          => 'field_custom_page_title',
