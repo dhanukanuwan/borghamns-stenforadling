@@ -216,14 +216,21 @@ class Borghamns_General_Admin {
 
 		if ( ! empty( $post_ids ) ) {
 
-			$output .= '<div class="testimonial-wrap d-flex flex-column">';
+			$output .= '<div class="testimonial-wrap d-flex carousel-inner">';
+
+			$i = 1;
 
 			foreach ( $post_ids as $post_id ) {
 
 				$testimonial_content = get_field( 'testimonial_content', $post_id );
 				$testi_company       = get_field( 'testi_company', $post_id );
+				$active = '';
 
-				$output .= '<div class="testimonial-item p-4 p-xl-5 bg-white"><div class="row">';
+				if ( 1 === $i ) {
+					$active = 'active';
+				}
+
+				$output .= '<div class="testimonial-item carousel-item p-4 p-xl-5 bg-white ' . $active . '"><div class="row">';
 
 				if ( has_post_thumbnail( $post_id ) ) {
 					$output .= '<div class="col-3 col-lg-2">';
@@ -253,9 +260,37 @@ class Borghamns_General_Admin {
 
 				$output .= '</div></div>';
 
+				$i++;
+
 			}
 
 			$output .= '</div>';
+
+		}
+
+		if ( ! empty( $post_ids ) && 1 < count( $post_ids ) ) {
+
+			$slider_html  = '<div id="carousel_testimonial" class="carousel slide" data-bs-ride="carousel">';
+			$slider_html .= '<div class="carousel-indicators">';
+
+			foreach ( $post_ids as $item_key => $item_val ) {
+
+				$active_slide = '';
+
+				if ( 0 === $item_key ) {
+					$active_slide = 'active';
+				}
+
+				$slider_html .= '<button type="button" data-bs-target="#carousel_testimonial" data-bs-slide-to="' . $item_key . '" class="' . $active_slide . ' bg-dark-text" aria-current="true" aria-label="Slide ' . $item_key + 1 . '"></button>';
+			}
+
+			$slider_html .= '</div>';
+
+				$slider_html .= $output;
+
+			$slider_html .= '</div>';
+
+			$output = $slider_html;
 
 		}
 
