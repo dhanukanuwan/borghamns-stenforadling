@@ -64,6 +64,8 @@ class Borghamns_General_Admin {
 		register_block_type( __DIR__ . '/borghamn-blocks/build/button/' );
 		register_block_type( __DIR__ . '/borghamn-blocks/build/section-header/' );
 		register_block_type( __DIR__ . '/borghamn-blocks/build/section-header-tag/' );
+		//register_block_type( __DIR__ . '/borghamn-blocks/build/slideshow/' );
+		register_block_type( __DIR__ . '/borghamn-blocks/build/gallery/' );
 	}
 
 	/**

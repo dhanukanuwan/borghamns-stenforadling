@@ -178,9 +178,14 @@ export default function Edit( { attributes, setAttributes } ) {
 							'core/paragraph',
 							'borghamns-general/button',
 							'core/image',
+							'core/video',
+							'core/embed',
+							'core/file',
 							'borghamns-general/testimonial',
 							'borghamns-general/faq-block',
-							'borghamns-general/team-members']} 
+							'borghamns-general/team-members',
+							'borghamns-general/slideshow',
+							'borghamns-general/gallery']} 
 					/>
 				</div>
 			</div>

@@ -18,5 +18,9 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.1.0"
+	},
+	"dependencies": {
+		"@fancyapps/ui": "^5.0.35",
+		"swiper": "^11.0.7"
 	}
 }

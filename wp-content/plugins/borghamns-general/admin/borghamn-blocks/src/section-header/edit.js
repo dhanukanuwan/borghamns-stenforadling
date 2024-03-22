@@ -37,7 +37,10 @@ export default function Edit() {
 				'core/heading',
 				'core/paragraph',
 				'borghamns-general/button',
-				'core/image'
+				'core/image',
+				'core/video',
+				'core/embed',
+				'core/file',
 			]
 		}
 	);

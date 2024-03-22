@@ -56,39 +56,53 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div { ...blockProps }>
 
 				{ testimonialData && testimonialData.length > 0 &&
-					<>
-						{ testimonialData.map( ( testimonial, i ) => {
-							return (
-								<div className="testimonial-item p-4 p-xl-5 bg-white" key={i}>
-									<div className="row">
-										{ testimonial._embedded && testimonial._embedded['wp:featuredmedia'] && testimonial._embedded['wp:featuredmedia'][0] &&
-											<div className="col-3 col-lg-2">
-												<img src={testimonial._embedded['wp:featuredmedia'][0].source_url} className="mw-100" alt={testimonial._embedded['wp:featuredmedia'][0].alt_text} title={testimonial._embedded['wp:featuredmedia'][0].title.rendered} />
-											</div>
-										}
-											
-										<div className="col-9 col-lg-10">
-											{ testimonial.acf && testimonial.acf.testimonial_content &&
-												<p>{testimonial.acf.testimonial_content}</p>
-											}
-											<div className="mt-3 d-flex align-items-center">
-												<div className="flex-grow-1">
-													<h4 className="liten mb-2">{testimonial.title.rendered}</h4>
-													{ testimonial.acf && testimonial.acf.testi_company &&
-														<span className="text-primary">{testimonial.acf.testi_company}</span>
-													}
-													
+					<div id="carousel_testimonial" className={`${testimonialData.length > 1 ? 'carousel slide' : ''}`} data-bs-ride={`${testimonialData.length > 1 ? 'carousel' : 'false'}`}>
+
+						{ testimonialData.length > 1 &&
+							<div className="carousel-indicators">
+								{ testimonialData.map( ( testimonial, i ) => {
+									return(
+										<button type="button" data-bs-target="#carousel_testimonial" data-bs-slide-to={i} className={`bg-dark-text ${i === 0 ? 'active' : ''}`} aria-current={`${i === 0 ? 'true' : 'false'}`} aria-label={`Slide ${i+1}`} key={i}></button>
+									);
+								})}
+							</div>
+						}
+
+						<div className="testimonial-wrap d-flex carousel-inner">
+							{ testimonialData.map( ( testimonial, i ) => {
+								return (
+									<div className={`testimonial-item p-4 p-xl-5 bg-white ${testimonialData.length > 1 ? 'carousel-item' : ''} ${i === 0 ? 'active' : ''}`} key={i}>
+
+										<div className={`row ${testimonialData.length > 1 ? 'carousel-inner' : ''}`}>
+											{ testimonial._embedded && testimonial._embedded['wp:featuredmedia'] && testimonial._embedded['wp:featuredmedia'][0] &&
+												<div className="col-3 col-lg-2">
+													<img src={testimonial._embedded['wp:featuredmedia'][0].source_url} className="mw-100" alt={testimonial._embedded['wp:featuredmedia'][0].alt_text} title={testimonial._embedded['wp:featuredmedia'][0].title.rendered} />
 												</div>
-												<div>
-													<span className="h2 liten text-primary">,,</span>
+											}
+												
+											<div className="col-9 col-lg-10">
+												{ testimonial.acf && testimonial.acf.testimonial_content &&
+													<p>{testimonial.acf.testimonial_content}</p>
+												}
+												<div className="mt-3 d-flex align-items-center">
+													<div className="flex-grow-1">
+														<h4 className="liten mb-2">{testimonial.title.rendered}</h4>
+														{ testimonial.acf && testimonial.acf.testi_company &&
+															<span className="text-primary">{testimonial.acf.testi_company}</span>
+														}
+														
+													</div>
+													<div>
+														<span className="h2 liten text-primary">,,</span>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							);
-						})}
-					</>
+								);
+							})}
+						</div>
+					</div>
 				}
 			</div>
 
