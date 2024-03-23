@@ -3,17 +3,28 @@
 @section('content')
   @include('partials.page-header')
 
-  @if (! have_posts())
-    <x-alert type="warning">
-      {!! __('Sorry, no results were found.', 'sage') !!}
-    </x-alert>
+	<section class="py-5 py-lg-6">
+		<div class="container">
 
-    {!! get_search_form(false) !!}
-  @endif
+			@if (! have_posts())
+				<div class="row">
+					<div class="col-12">
+						<x-alert type="warning">
+							<h2>{!! __('Tyvärr, inga resultat hittades.', 'sage') !!}</h2>
+						</x-alert>
+					</div>
+				</div>
+			@endif
 
-  @while(have_posts()) @php(the_post())
-    @include('partials.content-search')
-  @endwhile
+			@while(have_posts()) @php(the_post())
+				<div class="row">
+					<div class="col-12 my-3 pb-4 border-bottom">
+						@include('partials.content-search')
+					</div>
+				</div>
+			@endwhile
 
-  {!! get_the_posts_navigation() !!}
+		</div>
+	</section>
+
 @endsection

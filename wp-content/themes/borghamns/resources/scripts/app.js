@@ -1,11 +1,14 @@
 import domReady from '@roots/sage/client/dom-ready';
 import 'bootstrap';
+import pageSearch from './includes/search';
 
 /**
  * Application entrypoint
  */
 domReady(async () => {
-  // ...
+
+  pageSearch();
+
 });
 
 /**
