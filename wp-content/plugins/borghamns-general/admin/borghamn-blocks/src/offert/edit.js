@@ -6,6 +6,7 @@ import StepZero from './steps/step-0';
 import StoneType from './steps/stone-type';
 import StepTwo from './steps/step-two';
 import StepThree from './steps/step-three';
+import StepFour from './steps/step-four';
 
 import sidebarImg from './images/offert-img.jpg';
 import './editor.scss';
@@ -76,6 +77,10 @@ export default function Edit() {
 								selectedProduct={selectedProductType}
 								formType={selectedFormType}
 							/>
+						}
+
+						{currentStep === 4 &&
+							<StepFour />
 						}
 
 						<div className="mt-auto">

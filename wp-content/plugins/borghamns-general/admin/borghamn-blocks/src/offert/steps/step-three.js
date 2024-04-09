@@ -37,12 +37,14 @@ const StepThree = ( props ) => {
     const [measurements, setMeasurements] = useState(defaultMeasurements);
     const [placing, setPlacing] = useState('');
     const [sizes, setSizes] = useState( defaultSizes );
+    const [productType, setProductType] = useState('bankskivor');
 
     useEffect(() => {
 
         const savedMeasurements = localStorage.getItem('borg_measurements');
         const savedPlacing = localStorage.getItem('borg_placing');
         const savedsizes = localStorage.getItem('borg_sizes');
+        const savedProductType = localStorage.getItem('borg_product_type');
 
         if ( savedMeasurements ) {
             setMeasurements( JSON.parse(savedMeasurements) )
@@ -55,6 +57,10 @@ const StepThree = ( props ) => {
         if ( savedsizes ) {
             setSizes( JSON.parse(savedsizes) );
         }
+
+        if ( savedProductType ) {
+			setProductType( savedProductType );
+		}
 
     }, []);
 
@@ -131,7 +137,7 @@ const StepThree = ( props ) => {
     return (
         <div className="step-wrap h-100 position-relative">
 
-            {props?.selectedProduct && props?.selectedProduct === 'bankskivor' &&
+            {productType && productType === 'bankskivor' &&
                 <>
                     <h2 className="h3 liten">{ __('Ange mått', 'borghamns-general' ) }</h2>
 
@@ -161,7 +167,7 @@ const StepThree = ( props ) => {
                 </>
             }
 
-            {props?.selectedProduct && props?.selectedProduct === 'fonsterbankar' &&
+            {productType && productType === 'fonsterbankar' &&
                 <>
                     <h2 className="h3 liten">{ __('Placering', 'borghamns-general' ) }</h2>
 
@@ -192,7 +198,7 @@ const StepThree = ( props ) => {
                 </>
             }
 
-            {props?.selectedProduct && props?.selectedProduct === 'golvplattor' &&
+            {productType && productType === 'golvplattor' &&
                 <>
                     <h2 className="h3 liten">{ __('Välj storlek', 'borghamns-general' ) }</h2>
 
