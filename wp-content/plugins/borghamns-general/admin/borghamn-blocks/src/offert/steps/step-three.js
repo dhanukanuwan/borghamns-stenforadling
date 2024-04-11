@@ -207,7 +207,7 @@ const StepThree = ( props ) => {
                             <div className="form-option-wrap pointer p-2 border border-2 border-primary rounded-0">
                                 <img src={imageListFive[0]} className="d-block mx-auto mw-200"  />
                                 <h4 className="liten h6 text-center mb-2 mt-3">{ __('Fallande längder', 'borghamns-general' ) }</h4>
-                                <select className="form-select h-40" value={sizes.fallande_langder} onChange={(e) => handleSizeChange( 'fallande_langder', e.target.value )}>
+                                <select className="form-select" value={sizes.fallande_langder} onChange={(e) => handleSizeChange( 'fallande_langder', e.target.value )}>
                                     <option value="">{ __('(Välj en bredd)', 'borghamns-general' ) }</option>
                                     <option value="200mm">{ __('200mm breda', 'borghamns-general' ) }</option>
                                     <option value="300mm">{ __('300mm breda', 'borghamns-general' ) }</option>
@@ -219,7 +219,7 @@ const StepThree = ( props ) => {
                             <div className="form-option-wrap pointer p-2 border border-2 border-primary rounded-0">
                                 <img src={imageListFive[1]} className="d-block mx-auto mw-200"  />
                                 <h4 className="liten h6 text-center mb-2 mt-3">{ __('Rektangulära plattor', 'borghamns-general' ) }</h4>
-                                <select className="form-select h-40" value={sizes.rektangulara_plattor} onChange={(e) => handleSizeChange( 'rektangulara_plattor', e.target.value )}>
+                                <select className="form-select" value={sizes.rektangulara_plattor} onChange={(e) => handleSizeChange( 'rektangulara_plattor', e.target.value )}>
                                     <option value="">{ __('(Välj en storlek)', 'borghamns-general' ) }</option>
                                     <option value="400x200mm">{ __('400x200mm', 'borghamns-general' ) }</option>
                                     <option value="600x200mm">{ __('600x200mm', 'borghamns-general' ) }</option>
@@ -231,7 +231,7 @@ const StepThree = ( props ) => {
                             <div className="form-option-wrap pointer p-2 border border-2 border-primary rounded-0">
                                 <img src={imageListFive[2]} className="d-block mx-auto mw-200"  />
                                 <h4 className="liten h6 text-center mb-2 mt-3">{ __('Fyrkantsplattor', 'borghamns-general' ) }</h4>
-                                <select className="form-select h-40" value={sizes.fyrkantsplattor} onChange={(e) => handleSizeChange( 'fyrkantsplattor', e.target.value )}>
+                                <select className="form-select" value={sizes.fyrkantsplattor} onChange={(e) => handleSizeChange( 'fyrkantsplattor', e.target.value )}>
                                     <option value="">{ __('(Välj en storlek)', 'borghamns-general' ) }</option>
                                     <option value="100x100mm">{ __('100x100mm', 'borghamns-general' ) }</option>
                                     <option value="150x150mm">{ __('150x150mm', 'borghamns-general' ) }</option>

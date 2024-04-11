@@ -213,7 +213,7 @@ const StepFour = () => {
                             <div className="form-option-wrap pointer p-2 border border-2 border-primary rounded-0">
                                 <img src={imageListFour[0]} className="d-block mx-auto mw-200"  />
                                 <h4 className="liten h6 text-center mb-2 mt-3">{ __('Tjocklek', 'borghamns-general' ) }</h4>
-                                <select className="form-select h-40" value={thickness} onChange={(e) => handleThicknessChange( e.target.value )}>
+                                <select className="form-select" value={thickness} onChange={(e) => handleThicknessChange( e.target.value )}>
                                     <option value="">{ __('(Välj en tjocklek)', 'borghamns-general' ) }</option>
                                     <option value="10mm">{ __('10mm', 'borghamns-general' ) }</option>
                                     <option value="20mm">{ __('20mm', 'borghamns-general' ) }</option>
