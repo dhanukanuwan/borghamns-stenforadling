@@ -7,6 +7,13 @@ import StepTwo from './steps/step-two';
 import StepThree from './steps/step-three';
 import StepFour from './steps/step-four';
 import StepFive from './steps/step-five';
+import StepSix from './steps/step-six';
+import StepSeven from './steps/step-seven';
+import StepEight from './steps/step-eight';
+import StepNine from './steps/step-nine';
+import StepTen from './steps/step-ten';
+import StepEleven from './steps/step-eleven';
+import StepTwelve from './steps/step-twelve';
 
 import sidebarImg from './images/offert-img.jpg';
 import './editor.scss';
@@ -80,6 +87,34 @@ const BegarOffert = () => {
 
                         {currentStep === 5 &&
 							<StepFive />
+						}
+
+						{currentStep === 6 &&
+							<StepSix />
+						}
+
+						{currentStep === 7 &&
+							<StepSeven />
+						}
+
+						{currentStep === 8 &&
+							<StepEight />
+						}
+
+						{currentStep === 9 &&
+							<StepNine />
+						}
+
+						{currentStep === 10 &&
+							<StepTen />
+						}
+
+						{currentStep === 11 &&
+							<StepEleven />
+						}
+
+						{currentStep === 12 &&
+							<StepTwelve />
 						}
 
 						<div className="mt-auto">

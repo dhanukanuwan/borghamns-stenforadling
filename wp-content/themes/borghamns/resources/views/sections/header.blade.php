@@ -178,7 +178,7 @@
 									@endif
 								</h1>
 							@else
-								<h1 class="text-white liten">{{$hero_data['page_title']}}</h1>
+								<h1 class="text-white liten mb-3">{{$hero_data['page_title']}}</h1>
 
 								@if (! empty( $hero_data['page_description'] ) )
 									<div class="mb-4 text-white">

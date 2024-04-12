@@ -82,6 +82,8 @@ const StepFour = () => {
         const savedStoneType = localStorage.getItem('borg_stone_type');
         const savedPlacing = localStorage.getItem('borg_placing');
         const savedProductType = localStorage.getItem('borg_product_type');
+        const savedTreatmentType = localStorage.getItem('borg_surface_treatment');
+        const savedCustomTreatment = localStorage.getItem('borg_surface_treatment_custom');
 
         if ( savedStoneType ) {
             setStoneType( savedStoneType );
@@ -99,6 +101,14 @@ const StepFour = () => {
             }
         }
 
+        if ( savedTreatmentType ) {
+            setTreatmentType( savedTreatmentType );
+
+            if ( savedTreatmentType === 'custom' && savedCustomTreatment ) {
+                setCustomTreatment( savedCustomTreatment );
+            }
+        }
+
     }, []);
 
     const handleTreatmentTypeChange = ( type, value ) => {
@@ -108,7 +118,8 @@ const StepFour = () => {
         if ( type === 'input' ) {
             setCustomTreatment(value);
             setSurfaceTreatment(value);
-            localStorage.setItem('borg_surface_treatment', value);
+            localStorage.setItem('borg_surface_treatment', 'custom');
+            localStorage.setItem('borg_surface_treatment_custom', value);
         } else {
             setSurfaceTreatment(value);
             localStorage.setItem('borg_surface_treatment', value);
@@ -147,9 +158,9 @@ const StepFour = () => {
                     <h2 className="h3 liten">{ __('Välj ytbearbetning', 'borghamns-general' ) }</h2>
                     <div className="row mt-5 flex-grow-1">
                         <div className="col-12 col-lg-4">
-                            <div className={`form-option-wrap pointer p-2 border border-2 rounded-0 ${surfaceTreatment === 'finslipad' ? 'border-primary' : ''}`} onClick={() => handleTreatmentTypeChange('finslipad', 'finslipad')}>
+                            <div className={`form-option-wrap pointer p-2 border border-2 rounded-0 ${treatmentType === 'finslipad' ? 'border-primary' : ''}`} onClick={() => handleTreatmentTypeChange('finslipad', 'finslipad')}>
                                 <div className="d-flex justify-content-end mb-2">
-                                    <span className={`icon-ion-checkmark-circled ${surfaceTreatment === 'finslipad' ? 'text-primary' : 'text-secondary'}`}></span>
+                                    <span className={`icon-ion-checkmark-circled ${treatmentType === 'finslipad' ? 'text-primary' : 'text-secondary'}`}></span>
                                 </div>
 
                                 {( stoneType === 'kolmardsmarmor-ox' || stoneType === 'kolmardsmarmor-oxl' ) &&
@@ -163,7 +174,7 @@ const StepFour = () => {
                             </div>
                         </div>
                         <div className="col-12 col-lg-4">
-                            <div className={`form-option-wrap pointer p-2 border border-2 rounded-0 ${treatmentType === 'custom' ? 'border-primary' : ''}`} onClick={() => setTreatmentType('custom')}>
+                            <div className={`form-option-wrap pointer p-2 border border-2 rounded-0 ${treatmentType === 'custom' ? 'border-primary' : ''}`} onClick={() => handleTreatmentTypeChange('custom', 'custom')}>
                                 {( stoneType === 'kolmardsmarmor-ox' || stoneType === 'kolmardsmarmor-oxl' ) &&
                                     <img src={imageListOne[1]} className="d-block mx-auto mw-200"  alt="" />
                                 }
