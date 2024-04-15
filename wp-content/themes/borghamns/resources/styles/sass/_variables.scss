@@ -21,9 +21,8 @@ $headings-color: $text_color_primary;
 $headings-line-height: 1.2;
 $body-bg: $secondary_lite;
 
-$headings-font-family: 'internacional', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Helvetica Neue";
-$font-family-base: 'internacional', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Helvetica Neue";
-$headings-alt: 'internacional_altblack', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Helvetica Neue";
+$headings-font-family: 'Lora', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Helvetica Neue";
+$font-family-base: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Helvetica Neue";
 
 $headings-font-weight: 700;
 
@@ -58,7 +57,7 @@ $spacers: (
 
 $enable-negative-margins: true;
 
-$font-size-base: 1rem;
+$font-size-base: 1.125rem;
 
 $h1-font-size: $font-size-base * 3.5;
 $h2-font-size: $font-size-base * 3;

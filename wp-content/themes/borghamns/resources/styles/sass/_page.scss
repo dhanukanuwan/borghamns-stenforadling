@@ -1,20 +1,4 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-    &.liten {
-        font-family: $headings-alt;
-        text-transform: none;
-    }
-}
+
 .text-size-medium {
     font-size: 0.875rem;
 }
