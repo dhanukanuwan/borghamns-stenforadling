@@ -58,6 +58,7 @@ class Hero extends Composer {
 
 		$use_video_background = get_field( 'use_video_background', $page_id );
 		$hero_video_array     = get_field( 'hero_video', $page_id );
+		$disable_hero_section = get_field( 'disable_hero_section', $page_id );
 
 		$hero_video = null;
 
@@ -100,6 +101,7 @@ class Hero extends Composer {
 			'page_description' => $page_description,
 			'post_parent'      => $post_parent,
 			'hero_video'       => $hero_video,
+			'disable_hero'     => $disable_hero_section,
 		);
 
 		if ( is_front_page() ) {

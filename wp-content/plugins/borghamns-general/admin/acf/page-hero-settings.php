@@ -19,6 +19,13 @@ acf_add_local_field_group(
 		'title'    => 'Page Hero Settings',
 		'fields'   => array(
 			array(
+				'key'   => 'field_disable_hero_section',
+				'label' => 'Disable Hero Section?',
+				'name'  => 'disable_hero_section',
+				'type'  => 'true_false',
+				'ui'    => 1,
+			),
+			array(
 				'key'   => 'field_hero_image',
 				'label' => 'Hero Image',
 				'name'  => 'hero_image',
