@@ -11,7 +11,7 @@
 <section class="hero position-relative">
 	@if ( ! empty( $hero_data['hero_image'] ) && empty( $hero_data['hero_video'] ) )
 		<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
-			<img src="{{$hero_data['hero_image']}}" class="w-100 object-fit-cover" alt="" />
+            <img src="{{ wp_is_mobile() ? $hero_data['hero_image']['small'] : $hero_data['hero_image']['large']}}" class="w-100 object-fit-cover" alt="" />
 		</div>
 	@endif
 
@@ -36,7 +36,7 @@
 		<nav class="navbar navbar-expand-xl">
 			<div class="container">
 				<a class="navbar-brand" href="{{home_url('/')}}">
-					<img src="@asset('images/logo-white.png')" alt="{{bloginfo('name')}}" style="max-width: 170px" />
+					<img src="@asset('images/logo-white.png')" alt="{{bloginfo('name')}}" class="mw-100" width="170" height="47" />
 				</a>
 
 				<div class="collapse navbar-collapse" >

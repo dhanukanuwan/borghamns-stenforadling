@@ -76,13 +76,30 @@ class Hero extends Composer {
 
 		if ( empty( $hero_image ) ) {
 
-			$hero_asset = \Roots\asset( 'images/home-banner.jpg' );
+			$hero_image = array();
+
+			$hero_asset       = \Roots\asset( 'images/home-banner.jpg' );
+			$hero_asset_small = \Roots\asset( 'images/home-banner-small.jpg' );
 
 			if ( $hero_asset ) {
-				$hero_image = $hero_asset->uri();
+				$hero_image['large'] = $hero_asset->uri();
+				$hero_image['small'] = $hero_asset_small->uri();
 			}
 		} else {
-			$hero_image = $hero_image['url'];
+
+			$hero_image_output = array(
+				'large' => $hero_image['url'],
+			);
+
+			$hero_img_small = '';
+
+			if ( isset( $hero_image['sizes']['medium'] ) && ! empty( $hero_image['sizes']['medium'] ) ) {
+				$hero_img_small = $hero_image['sizes']['medium'];
+			} else {
+				$hero_img_small = $hero_image['url'];
+			}
+
+			$hero_image_output['small'] = $hero_img_small;
 		}
 
 		if ( is_tax() || is_category() ) {
