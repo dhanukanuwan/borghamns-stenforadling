@@ -122,6 +122,13 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 	 * @param int              $id     Current item ID.
 	 */
 	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+
+		$menu_classes = array();
+
+		if ( isset( $args->menu_class ) && ! empty( $args->menu_class ) ) {
+			$menu_classes = explode( ' ', $args->menu_class );
+		}
+
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
 			$t = '';
 			$n = '';
@@ -234,7 +241,11 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 			$atts['href']          = $item->url;
 			$atts['aria-haspopup'] = 'true';
 			$atts['aria-expanded'] = 'false';
-			$atts['class']         = 'nav-link text-white';
+			$atts['class']         = 'nav-link';
+
+			if ( ! empty( $menu_classes ) && ! in_array( 'no-hero', $menu_classes, true ) ) {
+				$atts['class'] = ' text-white';
+			}
 
 			$dropdown_icon = '<span class="icon-ion-chevron-down ms-1"></span>';
 
@@ -264,7 +275,11 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 		}
 
 		if ( ! $this->has_children && 0 === $depth ) {
-			$atts['class'] = $atts['class'] . ' text-white';
+			$atts['class'] = $atts['class'];
+
+			if ( ! empty( $menu_classes ) && ! in_array( 'no-hero', $menu_classes, true ) ) {
+				$atts['class'] = ' text-white';
+			}
 		}
 
 		$atts['aria-current'] = $item->current ? 'page' : '';

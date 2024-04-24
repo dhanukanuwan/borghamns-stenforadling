@@ -7,7 +7,7 @@ import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
 
-	const { bgType, bgColor, bgImage  } = attributes;
+	const { bgType, bgColor, bgImage, hPadding  } = attributes;
 
 	const onChangeBgType = ( newBgType ) => {
 		setAttributes( { bgType: newBgType } );
@@ -19,6 +19,10 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const onChangeBgImage = ( newBgImage ) => {
 		setAttributes( { bgImage: newBgImage } );
+	}
+
+	const onChangeHPadding = ( newhPadding ) => {
+		setAttributes( { hPadding: newhPadding } );
 	}
 
 	const onSelectMedia = (media) => {
@@ -43,11 +47,18 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	let sectionClasses = '';
 
+	let paddingClasses = 'py-5 py-xl-6';
+
+	if ( hPadding && hPadding.length > 0 ) {
+		paddingClasses = hPadding;
+
+	}
+
 	if ( bgColor && ( bgType && bgType === 'color' ) ) {
 		sectionClasses = `${sectionClasses} bg-${bgColor}`;
 		
 		if ( bgColor === 'primary' || bgColor === 'dark-text' ) {
-			sectionClasses = `${sectionClasses} py-5 py-xl-6 text-white`;
+			sectionClasses = `${sectionClasses} ${paddingClasses} text-white`;
 		}
 
 	} else {
@@ -55,7 +66,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	if ( !bgType || ( bgType && bgType.length === 0 ) ) {
-		sectionClasses = 'py-5 py-xl-6';
+		sectionClasses = paddingClasses;
 	} 
 
 	const blockProps = useBlockProps( {
@@ -186,6 +197,46 @@ export default function Edit( { attributes, setAttributes } ) {
 							}
 						</>
 					}
+
+					<PanelRow>
+						<fieldset>
+							<SelectControl
+								label={ __('Top and Bottom Spacing','borghamns-general') }
+								value={ hPadding }
+								onChange={ onChangeHPadding }
+								options={ [
+									{
+										value: '',
+										label: __('Default','borghamns-general'),
+									},
+									{
+										value: 'py-5',
+										label: __('5','borghamns-general'),
+									},
+									{
+										value: 'py-4',
+										label: __('4','borghamns-general'),
+									},
+									{
+										value: 'py-3',
+										label: __('3','borghamns-general'),
+									},
+									{
+										value: 'py-2',
+										label: __('2','borghamns-general'),
+									},
+									{
+										value: 'py-1',
+										label: __('1','borghamns-general'),
+									},
+									{
+										value: 'py-0',
+										label: __('0','borghamns-general'),
+									},
+								] }
+							/>
+						</fieldset>
+					</PanelRow>
 
 				</PanelBody>
 				

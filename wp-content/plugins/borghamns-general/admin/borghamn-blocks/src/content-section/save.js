@@ -4,9 +4,17 @@ import { __ } from '@wordpress/i18n';
 
 export default function save( { attributes } ) {
 
-	const { bgType, bgColor, bgImage  } = attributes;
+	const { bgType, bgColor, bgImage, hPadding  } = attributes;
 
-	let sectionClasses = 'py-5 py-xl-6';
+	let paddingClasses = '';
+
+	if ( hPadding && hPadding.length > 0 ) {
+		paddingClasses = hPadding;
+	} else {
+		paddingClasses = 'py-5 py-lg-6';
+	}
+
+	let sectionClasses = paddingClasses;
 
 	if ( bgColor && ( bgType && bgType === 'color' ) ) {
 		sectionClasses = `${sectionClasses} bg-${bgColor}`;
@@ -20,7 +28,7 @@ export default function save( { attributes } ) {
 	}
 
 	if ( !bgType || ( bgType && bgType.length === 0 ) ) {
-		sectionClasses = 'py-5 py-xl-6';
+		sectionClasses = paddingClasses;
 	} 
 
 	const blockProps = useBlockProps.save( {

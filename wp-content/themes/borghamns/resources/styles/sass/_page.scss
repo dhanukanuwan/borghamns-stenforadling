@@ -162,3 +162,23 @@
         height: auto !important;
     }
 }
+
+.wp-block-quote {
+    
+    @extend .position-relative;
+    border-left: 6px solid $primary;
+
+    &::before {
+        @extend .position-absolute;
+        font-family: $headings-font-family;
+        font-size: 75px;
+        font-style: italic;
+        letter-spacing: -4px;
+        line-height: 0;
+        content: ',,';
+        top: 60px;
+        left: 20px;
+        transform: rotate(180deg);
+        font-weight: bold;
+    }
+}

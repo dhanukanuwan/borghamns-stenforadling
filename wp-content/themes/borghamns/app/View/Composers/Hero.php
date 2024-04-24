@@ -20,6 +20,8 @@ class Hero extends Composer {
 	 */
 	protected static $views = array(
 		'sections.header',
+		'partials.header.header-no-hero',
+		'partials.header.header-with-hero',
 	);
 
 	/**

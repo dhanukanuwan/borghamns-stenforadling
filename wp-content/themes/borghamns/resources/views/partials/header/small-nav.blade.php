@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse" >
     <ul class="navbar-nav mb-0 ms-auto">
         <li class="nav-item dropdown d-flex align-items-center">
-            <a href="{{home_url('/')}}" class="nav-link text-white text-size-medium d-flex">
+            <a href="{{home_url('/')}}" class="nav-link text-{{$text_color}} text-size-medium d-flex">
                 <span class="d-flex align-items-center">
                     <img src="@asset('images/flags/sv.png')" alt="" width="20">
                     <span class="ms-2">Svenska</span>
@@ -31,11 +31,11 @@
                         </div>
                         
                     </form>
-                    <button id="search-close" type="button" class="btn p-0 text-white">
+                    <button id="search-close" type="button" class="btn p-0 text-{{$text_color}}">
                         <span class="icon-ion-android-close" style="font-size: 24px"></span>
                     </button>
                 </div>
-                <button id="search-trigger" type="btn" class="btn p-0 text-white">
+                <button id="search-trigger" type="btn" class="btn p-0 text-{{$text_color}}">
                     <span class="icon-ion-android-search" style="font-size: 24px"></span>
                 </button>
             </div>

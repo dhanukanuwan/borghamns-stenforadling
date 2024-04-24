@@ -20,6 +20,9 @@
 				"mediaUrl": "",
 				"mediaId": 0
 			}
+		},
+		"hPadding": {
+			"type": "string"
 		}
 	},
 	"example": {},
