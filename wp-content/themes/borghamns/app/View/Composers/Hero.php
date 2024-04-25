@@ -100,6 +100,8 @@ class Hero extends Composer {
 			}
 
 			$hero_image_output['small'] = $hero_img_small;
+
+			$hero_image = $hero_image_output;
 		}
 
 		if ( is_tax() || is_category() ) {

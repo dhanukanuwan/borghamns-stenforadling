@@ -89,6 +89,14 @@ class Borghamns_General_Admin {
 				'render_callback' => array( $this, 'borghamn_register_offer_dynamic_block_render_callback' ),
 			)
 		);
+
+		register_block_type(
+			__DIR__ . '/borghamn-blocks/build/ordersamples/',
+			array(
+				'api_version'     => 3,
+				'render_callback' => array( $this, 'borghamn_register_order_samples_dynamic_block_render_callback' ),
+			)
+		);
 	}
 
 	/**
@@ -403,6 +411,21 @@ class Borghamns_General_Admin {
 	public function borghamn_register_offer_dynamic_block_render_callback( $block_attributes, $content ) {
 
 		$output = '<section class="py-5 py-lg-6" id="offert-wrap"></section>';
+
+		return $output;
+
+	}
+
+	/**
+	 * Order samples dynamic block.
+	 *
+	 * @since    1.0.0
+	 * @param    array  $block_attributes .
+	 * @param    string $content .
+	 */
+	public function borghamn_register_order_samples_dynamic_block_render_callback( $block_attributes, $content ) {
+
+		$output = '<section id="order-samples-wrap"></section>';
 
 		return $output;
 

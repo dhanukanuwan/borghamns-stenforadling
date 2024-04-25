@@ -185,7 +185,8 @@ export default function Edit( { attributes, setAttributes } ) {
 							'borghamns-general/faq-block',
 							'borghamns-general/team-members',
 							'borghamns-general/slideshow',
-							'borghamns-general/gallery']} 
+							'borghamns-general/gallery',
+							'borghamns-general/ordersamples',]} 
 					/>
 				</div>
 			</div>
