@@ -5,13 +5,17 @@
 	if ( is_front_page() ) {
 		$hero_height = '600px';
 		$home_hero = $hero_data['home_hero'];
+
+		if ( wp_is_mobile() ) {
+			$hero_height = '400px';
+		}
 	}
 @endphp
 
 <section class="hero position-relative">
 	@if ( ! empty( $hero_data['hero_image'] ) && empty( $hero_data['hero_video'] ) )
 		<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
-            <img src="{{ wp_is_mobile() ? $hero_data['hero_image']['small'] : $hero_data['hero_image']['large']}}" class="w-100 object-fit-cover" alt="" />
+            <img data-src="{{ wp_is_mobile() ? $hero_data['hero_image']['small'] : $hero_data['hero_image']['large']}}" class="w-100 object-fit-cover lazyload" alt="" />
 		</div>
 	@endif
 
@@ -109,7 +113,7 @@
 									@php $i = 1; @endphp
 									@foreach ($home_hero['images'] as $image)
 										<div class="hero-img-{{$i}} d-flex align-items-center">
-											<img src="{{$image['url']}}" alt="{{$image['alt']}}" title="{{$image['title']}}" />
+											<img data-src="{{$image['url']}}" class="lazyload" alt="{{$image['alt']}}" title="{{$image['title']}}" />
 										</div>
 									@php $i++; @endphp
 									@endforeach

@@ -12,7 +12,7 @@
                     </div>
                     <div class="d-flex mt-5">
                         <div>
-                            <img src="@asset('images/ce-white.png')" style="max-width: 30px" alt="">
+                            <img data-src="@asset('images/ce-white.png')" class="lazyload" style="max-width: 30px" width="30" height="21" />
                         </div>
                         <div class="flex-grow-1 ps-2 pe-lg-5">
                             <p class="text-white" style="font-size: 10px">Borghamns Stenförädling är certifierat att CE-märka sin produktion. CE-märkning är obligatoriskt för naturstensprodukter från och med 1 juli 2013 och utgör en viktig del av kvalitetskedjan.
@@ -60,7 +60,7 @@
                             </ul>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <img src="@asset('images/footer-4.png')" class="mw-100" alt="">
+                            <img data-src="@asset('images/footer-4.png')" class="mw-100 lazyload" width="270" height="99" />
 
                             <ul class="mt-4 list-unstyled list-inline social-icons d-flex justify-content-center">
                                 <li class="me-3">

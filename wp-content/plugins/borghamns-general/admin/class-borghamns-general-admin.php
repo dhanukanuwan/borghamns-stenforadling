@@ -161,7 +161,10 @@ class Borghamns_General_Admin {
 
 						$output .= '<div class="round-img-wrap position-relative"><div class="p-2">';
 
-							$output .= get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'mw-100 w-100 h-auto' ) );
+							$member_image = get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'mw-100 w-100 h-auto lazyload' ) );
+							$member_image = str_replace( 'src=', 'data-src=', $member_image );
+
+							$output .= $member_image;
 
 						$output .= '</div></div>';
 

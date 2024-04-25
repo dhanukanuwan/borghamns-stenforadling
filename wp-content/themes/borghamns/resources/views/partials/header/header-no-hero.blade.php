@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-xl">
         <div class="container">
             <a class="navbar-brand" href="{{home_url('/')}}">
-                <img src="@asset('images/logo.png')" alt="{{bloginfo('name')}}" style="max-width: 170px" />
+                <img data-src="@asset('images/logo.png')" class="lazyload" alt="{{bloginfo('name')}}" style="max-width: 170px" />
             </a>
 
             <div class="collapse navbar-collapse" >
