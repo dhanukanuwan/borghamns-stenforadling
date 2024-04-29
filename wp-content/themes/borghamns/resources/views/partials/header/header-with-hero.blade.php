@@ -12,6 +12,19 @@
 	}
 @endphp
 
+@if ( ! is_front_page() )
+
+	<style>
+		@media (min-width: 1700px) {
+			.hero .hero-bg {
+				min-height: 600px !important;
+				height: 600px !important;
+			}
+		}
+	</style>
+	
+@endif
+
 <section class="hero position-relative">
 	@if ( ! empty( $hero_data['hero_image'] ) && empty( $hero_data['hero_video'] ) )
 		<div class="hero-bg mw-100 d-flex" style="min-height: {{$hero_height}};max-height: {{$hero_height}};">
@@ -71,6 +84,8 @@
 					</ul>
 
 				</div>
+
+				@include('partials.header.mobile-nav', ['text_color' => 'white'])
 
 			</div>
 		</nav>
@@ -141,7 +156,7 @@
 									@endif
 								</h1>
 							@else
-								<h1 class="text-white liten mb-3">{{$hero_data['page_title']}}</h1>
+								<h1 class="text-white liten mb-3">{!! $hero_data['page_title'] !!}</h1>
 
 								@if (! empty( $hero_data['page_description'] ) )
 									<div class="mb-4 text-white">

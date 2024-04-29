@@ -197,6 +197,10 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 		$classes[] = 'nav-item';
 		$classes[] = 'nav-depth-' . $depth;
 
+		if ( ! empty( $menu_classes ) && in_array( 'mobile-nav', $menu_classes, true ) ) {
+			$classes[] = 'position-relative';
+		}
+
 		// if ( 1 === $depth ) {
 		// 	$classes[] = 'py-3 px-4';
 		// }
@@ -247,7 +251,15 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 				$atts['class'] = $atts['class'] . ' text-white';
 			}
 
-			$dropdown_icon = '<span class="icon-ion-chevron-down ms-1"></span>';
+			if ( ! empty( $menu_classes ) && in_array( 'mobile-nav', $menu_classes, true ) ) {
+				$atts['class'] = $atts['class'] . ' px-3 border-top';
+			}
+
+			$dropdown_icon = '';
+
+			if ( ! empty( $menu_classes ) && ! in_array( 'mobile-nav', $menu_classes, true ) ) {
+				$dropdown_icon = '<span class="icon-ion-chevron-down ms-1"></span>';
+			}
 
 			if ( is_string( $args->menu_class ) ) {
 				$classes_array = explode( ' ', $args->menu_class );
@@ -270,7 +282,7 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 			if ( $depth > 0 ) {
 				$atts['class'] = 'dropdown-item';
 			} else {
-				$atts['class'] = 'nav-link';
+				$atts['class'] = 'nav-link px-3 border-top';
 			}
 		}
 

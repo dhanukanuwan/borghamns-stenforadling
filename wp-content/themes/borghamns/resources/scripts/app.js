@@ -2,6 +2,7 @@ import domReady from '@roots/sage/client/dom-ready';
 import 'bootstrap';
 import 'lazysizes';
 import pageSearch from './includes/search';
+import mobileNav from './includes/mobileNav';
 
 /**
  * Application entrypoint
@@ -9,6 +10,7 @@ import pageSearch from './includes/search';
 domReady(async () => {
 
   pageSearch();
+  mobileNav();
 
 });
 

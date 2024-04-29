@@ -50,6 +50,8 @@
 
             </div>
 
+            @include('partials.header.mobile-nav', ['text_color' => 'black'])
+
         </div>
     </nav>
 
