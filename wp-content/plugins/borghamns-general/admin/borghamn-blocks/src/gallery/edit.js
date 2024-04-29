@@ -134,7 +134,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							return(
 								<div className={`col-12 mb-4 ${columnClasses}`} key={i}>
 									<img src={image.url} className="mw-100 w-100" alt={image.alt} />
-									<span className="text-break d-inline-block w-100 pt-2 text-center">{image.title}</span>
+									{/* <span className="text-break d-inline-block w-100 pt-2 text-center">{image.title}</span> */}
 								</div>
 							);
 						})}

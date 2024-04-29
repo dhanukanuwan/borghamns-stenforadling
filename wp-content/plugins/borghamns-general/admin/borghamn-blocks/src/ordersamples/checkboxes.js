@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 
-const orderCheckboxes = {
+const defaultOrderCheckboxes = {
     'grabrun': {
         'title': __( 'Borghamnskalksten, gråbrun', 'ordersamples' ),
+        'annan_ytbehandling': '',
         'boxes': [
             {
                 name: __( 'Borstad', 'ordersamples' ),
@@ -43,6 +44,7 @@ const orderCheckboxes = {
     },
     'ljusgra': {
         'title': __( 'Borghamnskalksten, ljusgrå', 'ordersamples' ),
+        'annan_ytbehandling': '',
         'boxes': [
             {
                 name: __( 'Borstad', 'ordersamples' ),
@@ -83,6 +85,7 @@ const orderCheckboxes = {
     },
     'ox': {
         'title': __( 'Kolmårdsmarmor OX', 'ordersamples' ),
+        'annan_ytbehandling': '',
         'boxes': [
             {
                 name: __( 'Borstad', 'ordersamples' ),
@@ -113,6 +116,7 @@ const orderCheckboxes = {
     },
     'oxl': {
         'title':__(  'Kolmårdsmarmor OXL', 'ordersamples' ),
+        'annan_ytbehandling': '',
         'boxes': [
             {
                 name: __( 'Borstad', 'ordersamples' ),
@@ -143,4 +147,4 @@ const orderCheckboxes = {
     }
 };
 
-export default orderCheckboxes;
+export default defaultOrderCheckboxes;

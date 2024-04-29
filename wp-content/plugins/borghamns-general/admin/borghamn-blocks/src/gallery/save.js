@@ -27,10 +27,10 @@ export default function save( { attributes } ) {
 					{ imageData.map((image,i) => {
 						return(
 							<div className={`col-12 mb-4 ${columnClasses}`} key={i}>
-								<a href={image.url} data-fancybox="gallery" data-src={image.url} data-caption={image.title}>
+								<a href={image.url} data-fancybox="gallery" data-src={image.url} data-caption={false}>
 									<img src={image.url} className="mw-100 w-100" alt={image.alt} />
 								</a>
-								<span className="text-break d-inline-block w-100 pt-2 text-center">{image.title}</span>
+								{/* <span className="text-break d-inline-block w-100 pt-2 text-center">{image.title}</span> */}
 							</div>
 						);
 					})}
