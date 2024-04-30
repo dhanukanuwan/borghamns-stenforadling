@@ -9,7 +9,7 @@
         <div class="d-flex">
             <div class="mobile-logo ps-3 flex-grow-1">
                 <a class="navbar-brand" href="{{home_url('/')}}">
-                    <img data-src="@asset('images/logo.png')" class="lazyload" alt="{{bloginfo('name')}}" width="170" height="47" />
+                    <img data-src="@asset('images/logo.png')" class="lazyload" alt="{{bloginfo('name')}}" width="150" height="80" />
                 </a>
             </div>
             <div class="mobile-nav-close-wrap">

@@ -282,7 +282,11 @@ class Bootstrap_Walker_Menu extends Walker_Nav_Menu {
 			if ( $depth > 0 ) {
 				$atts['class'] = 'dropdown-item';
 			} else {
-				$atts['class'] = 'nav-link px-3 border-top';
+				$atts['class'] = 'nav-link';
+
+				if ( ! empty( $menu_classes ) && in_array( 'mobile-nav', $menu_classes, true ) ) {
+					$atts['class'] = $atts['class'] . ' px-3 border-top';
+				}
 			}
 		}
 

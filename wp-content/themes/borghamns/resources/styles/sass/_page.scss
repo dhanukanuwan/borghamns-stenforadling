@@ -207,7 +207,7 @@
 
         .nav-depth-0 {
             .submenu-trigger {
-                top: 7px;
+                top: 8px;
                 right: 7px;
             }
         }
@@ -216,6 +216,13 @@
             background-color: $white;
             border: 0;
             border-radius: 0;
+            
+            li > a {
+                padding-left: 30px;
+                font-size: 1rem;
+                line-height: 1;
+                border-top: 1px solid var(--bs-border-color);
+            }
         }
     }
 
