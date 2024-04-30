@@ -1,5 +1,6 @@
 import domReady from '@roots/sage/client/dom-ready';
-import 'bootstrap';
+import 'bootstrap/js/dist/carousel';
+import 'bootstrap/js/dist/collapse';
 import 'lazysizes';
 import pageSearch from './includes/search';
 import mobileNav from './includes/mobileNav';
