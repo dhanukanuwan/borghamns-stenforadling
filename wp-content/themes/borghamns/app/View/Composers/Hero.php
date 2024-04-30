@@ -93,8 +93,8 @@ class Hero extends Composer {
 
 			$hero_img_small = '';
 
-			if ( isset( $hero_image['sizes']['medium'] ) && ! empty( $hero_image['sizes']['medium'] ) ) {
-				$hero_img_small = $hero_image['sizes']['medium'];
+			if ( isset( $hero_image['sizes']['large'] ) && ! empty( $hero_image['sizes']['large'] ) ) {
+				$hero_img_small = $hero_image['sizes']['large'];
 			} else {
 				$hero_img_small = $hero_image['url'];
 			}

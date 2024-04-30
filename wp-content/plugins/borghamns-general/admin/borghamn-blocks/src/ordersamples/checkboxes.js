@@ -147,4 +147,55 @@ const defaultOrderCheckboxes = {
     }
 };
 
-export default defaultOrderCheckboxes;
+const defaultContactDetails = [
+    {
+        name: __('Namn', 'ordersamples'),
+        val: '',
+        type: 'text',
+        required: true
+    },
+    {
+        name: __('Företag', 'ordersamples'),
+        val: '',
+        type: 'text',
+        required: false
+    },
+    {
+        name: __('Adress', 'ordersamples'),
+        val: '',
+        type: 'text',
+        required: true
+    },
+    {
+        name: __('Postnummer', 'ordersamples'),
+        val: '',
+        type: 'text',
+        required: true
+    },
+    {
+        name: __('Postort', 'ordersamples'),
+        val: '',
+        type: 'text',
+        required: true
+    },
+    {
+        name: __('Telefon', 'ordersamples'),
+        val: '',
+        type: 'tel',
+        required: true
+    },
+    {
+        name: __('Fax', 'ordersamples'),
+        val: '',
+        type: 'tel',
+        required: false
+    },
+    {
+        name: __('E-post', 'ordersamples'),
+        val: '',
+        type: 'email',
+        required: true
+    },
+];
+
+export {defaultOrderCheckboxes, defaultContactDetails};
