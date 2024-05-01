@@ -71,3 +71,12 @@
 		max-height: 1000px;
 	}
 }
+
+#steps-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

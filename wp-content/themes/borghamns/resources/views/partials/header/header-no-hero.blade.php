@@ -40,7 +40,7 @@
                             <div class="d-flex">
                                 <span class="pe-2">{{__( 'Begär offert', 'sage')}}</span>
                                 <div class="d-flex align-items-center">
-                                    <span class="line-right bg-white d-inline-block" style="margin-right: -12px;"></span>
+                                    <span class="line-right bg-white d-inline-block" style="margin-right: -14px;"></span>
                                     <span class="icon-ion-ios-arrow-right"></span>
                                 </div>
                             </div>
