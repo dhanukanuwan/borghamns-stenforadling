@@ -476,10 +476,61 @@ class Borghamns_General_Admin {
 	 */
 	public function borghamn_register_acf_field_groups() {
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/page-hero-settings.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/team-member-info.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/homepage-hero.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/faq-block-content.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/acf/testimonial-data.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/acf/page-hero-settings.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/acf/team-member-info.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/acf/homepage-hero.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/acf/faq-block-content.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/acf/testimonial-data.php';
+	}
+
+	/**
+	 * Get LMS courses for the Success Board endpoint.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_save_begar_offert_endpoint() {
+
+		register_rest_route(
+			'borghamns/v1',
+			'/savebegaroffert',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'borghamn_save_begar_offert_endpoint_callback' ),
+				'permission_callback' => '__return_true',
+			)
+		);
+	}
+
+	/**
+	 * Get LMS courses for the Success Board callback function.
+	 *
+	 * @since    1.0.0
+	 * @param     array $request .
+	 */
+	public function borghamn_save_begar_offert_endpoint_callback( $request ) {
+
+		$data    = array();
+		$success = false;
+		$message = '';
+
+		$contact_info = json_decode( sanitize_text_field( $request->get_param( 'contact_info' ) ), true );
+		$comments     = json_decode( sanitize_text_field( $request->get_param( 'comments' ) ), true );
+		$saved_data   = json_decode( sanitize_text_field( $request->get_param( 'saved_data' ) ), true );
+
+		$data = array(
+			'contact_info' => $contact_info,
+			'comments' => $comments,
+			'saved_data' => $saved_data,
+		);
+
+		$response = rest_ensure_response(
+			array(
+				'data'    => $data,
+				'success' => $success,
+				'message' => $message,
+			)
+		);
+
+		return $response;
 	}
 }

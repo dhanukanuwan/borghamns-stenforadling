@@ -174,6 +174,11 @@ class Borghamns_General {
 		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_team_post_type' );
 		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_faq_blocks_post_type' );
 		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_testimonial_blocks_post_type' );
+		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_begar_offert_post_type' );
+		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_bestall_prover_post_type' );
+		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_begar_offert_post_type_meta_fields' );
+
+		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'borghamn_save_begar_offert_endpoint' );
 
 	}
 

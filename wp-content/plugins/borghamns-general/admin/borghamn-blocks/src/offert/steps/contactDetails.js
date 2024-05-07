@@ -1,74 +1,68 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
+import {defaultContactDetails, dataFields} from './defaultData';
+import apiFetch from '@wordpress/api-fetch';
+// import { useDispatch } from '@wordpress/data';
+// import { store as coreDataStore } from '@wordpress/core-data';
 
 const ContactDeatils = () => {
-
-    const defaultContactDetails = [
-        {
-            name: __('Namn', 'borghamns-general'),
-            val: '',
-            type: 'text',
-            required: true
-        },
-        {
-            name: __('Företag', 'borghamns-general'),
-            val: '',
-            type: 'text',
-            required: false
-        },
-        {
-            name: __('Adress', 'borghamns-general'),
-            val: '',
-            type: 'text',
-            required: true
-        },
-        {
-            name: __('Postnummer', 'borghamns-general'),
-            val: '',
-            type: 'text',
-            required: true
-        },
-        {
-            name: __('Postort', 'borghamns-general'),
-            val: '',
-            type: 'text',
-            required: true
-        },
-        {
-            name: __('Telefon', 'borghamns-general'),
-            val: '',
-            type: 'tel',
-            required: true
-        },
-        {
-            name: __('Fax', 'borghamns-general'),
-            val: '',
-            type: 'tel',
-            required: false
-        },
-        {
-            name: __('E-post', 'borghamns-general'),
-            val: '',
-            type: 'email',
-            required: true
-        },
-    ];
 
     const [contactDetails, setContactDetails] = useState( defaultContactDetails );
     const [termsAccepted, setTermsAccespted] = useState(false);
     const [offerComments, setOfferComments] = useState('');
     const [offerFile, setOfferFile] = useState();
 
-    const handleFormSubmit = ( event ) => {
+    // const { saveEntityRecord } = useDispatch( coreDataStore );
+
+    const handleFormSubmit = async ( event ) => {
+
+        event.preventDefault();
+        event.stopPropagation();
 
         if ( !event.target.checkValidity() ) {
-            event.preventDefault();
-            event.stopPropagation();
 
             event.target.classList.add('was-validated');
 
             return;
         }
+
+        let savedData = [];
+
+        if ( dataFields ) {
+            dataFields.forEach( (field) => {
+
+                const savedItem = localStorage.getItem(field.key);
+
+                if ( savedItem ) {
+                    savedData.push({
+                        key: field.key,
+                        val: savedItem,
+                        name: field.name
+                    });
+                }
+
+            });
+        }
+
+        let queryParams = {
+            contact_info: JSON.stringify(contactDetails ),
+            comments: offerComments,
+            file: offerFile,
+            saved_data: JSON.stringify(savedData )
+        }
+
+        apiFetch( {
+            path: 'borghamns/v1/savebegaroffert',
+            method: 'POST',
+            data: queryParams,
+        } ).then( ( res ) => {
+            console.log( res );
+        } );
+
+        //const savedRecord = await saveEntityRecord( 'postType', 'begar_offert', {title: 'First offer', status: 'publish', author: 1} );
+
+        
+       
     }
 
     const handleContactDetailChange = ( key, val ) => {

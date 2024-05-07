@@ -255,4 +255,173 @@ class Borghamns_CPT {
 
 		register_post_type( 'testimonial_block', $args );
 	}
+
+	/**
+	 * Register Begär offert post type.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamns_begar_offert_post_type() {
+
+		$labels = array(
+			'name'                  => _x( 'Begär offert', 'Post Type General Name', 'borghamns-general' ),
+			'singular_name'         => _x( 'Begär offert', 'Post Type Singular Name', 'borghamns-general' ),
+			'menu_name'             => __( 'Begär offert', 'borghamns-general' ),
+			'name_admin_bar'        => __( 'Begär offert', 'borghamns-general' ),
+			'archives'              => __( 'Begär offert Archives', 'borghamns-general' ),
+			'attributes'            => __( 'Begär offert Attributes', 'borghamns-general' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'borghamns-general' ),
+			'all_items'             => __( 'All Begär offert', 'borghamns-general' ),
+			'add_new_item'          => __( 'Add New Begär offert', 'borghamns-general' ),
+			'add_new'               => __( 'Add New Begär offert', 'borghamns-general' ),
+			'new_item'              => __( 'New Begär offert', 'borghamns-general' ),
+			'edit_item'             => __( 'Edit Begär offert', 'borghamns-general' ),
+			'update_item'           => __( 'Update Begär offert', 'borghamns-general' ),
+			'view_item'             => __( 'View Begär offert', 'borghamns-general' ),
+			'view_items'            => __( 'View Begär offert', 'borghamns-general' ),
+			'search_items'          => __( 'Search Begär offert', 'borghamns-general' ),
+			'not_found'             => __( 'Not found', 'borghamns-general' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'borghamns-general' ),
+			'featured_image'        => __( 'Begär offert Image', 'borghamns-general' ),
+			'set_featured_image'    => __( 'Set Begär offert image', 'borghamns-general' ),
+			'remove_featured_image' => __( 'Remove Begär offert image', 'borghamns-general' ),
+			'use_featured_image'    => __( 'Use as Begär offert image', 'borghamns-general' ),
+			'insert_into_item'      => __( 'Insert into item', 'borghamns-general' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'borghamns-general' ),
+			'items_list'            => __( 'Items list', 'borghamns-general' ),
+			'items_list_navigation' => __( 'Items list navigation', 'borghamns-general' ),
+			'filter_items_list'     => __( 'Filter items list', 'borghamns-general' ),
+		);
+
+		$args = array(
+			'label'               => __( 'Begär offert', 'borghamns-general' ),
+			'description'         => __( 'Begär offert', 'borghamns-general' ),
+			'labels'              => $labels,
+			'supports'            => array( 'title', 'custom-fields' ),
+			'hierarchical'        => false,
+			'public'              => false,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'menu_icon'           => 'dashicons-editor-table',
+			'show_in_admin_bar'   => false,
+			'show_in_nav_menus'   => false,
+			'can_export'          => true,
+			'has_archive'         => false,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'page',
+			'show_in_rest'        => true,
+		);
+
+		register_post_type( 'begar_offert', $args );
+	}
+
+	/**
+	 * Register Begär offert post type.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamns_bestall_prover_post_type() {
+
+		$labels = array(
+			'name'                  => _x( 'Beställ prover', 'Post Type General Name', 'borghamns-general' ),
+			'singular_name'         => _x( 'Beställ prover', 'Post Type Singular Name', 'borghamns-general' ),
+			'menu_name'             => __( 'Beställ prover', 'borghamns-general' ),
+			'name_admin_bar'        => __( 'Beställ prover', 'borghamns-general' ),
+			'archives'              => __( 'Beställ prover Archives', 'borghamns-general' ),
+			'attributes'            => __( 'Beställ prover Attributes', 'borghamns-general' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'borghamns-general' ),
+			'all_items'             => __( 'All Beställ prover', 'borghamns-general' ),
+			'add_new_item'          => __( 'Add New', 'borghamns-general' ),
+			'add_new'               => __( 'Add New', 'borghamns-general' ),
+			'new_item'              => __( 'New Beställ prover', 'borghamns-general' ),
+			'edit_item'             => __( 'Edit', 'borghamns-general' ),
+			'update_item'           => __( 'Update Beställ prover', 'borghamns-general' ),
+			'view_item'             => __( 'View Beställ prover', 'borghamns-general' ),
+			'view_items'            => __( 'View Beställ prover', 'borghamns-general' ),
+			'search_items'          => __( 'Search Beställ prover', 'borghamns-general' ),
+			'not_found'             => __( 'Not found', 'borghamns-general' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'borghamns-general' ),
+			'featured_image'        => __( 'Beställ prover Image', 'borghamns-general' ),
+			'set_featured_image'    => __( 'Set Beställ prover image', 'borghamns-general' ),
+			'remove_featured_image' => __( 'Remove Beställ prover image', 'borghamns-general' ),
+			'use_featured_image'    => __( 'Use as Beställ prover image', 'borghamns-general' ),
+			'insert_into_item'      => __( 'Insert into item', 'borghamns-general' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'borghamns-general' ),
+			'items_list'            => __( 'Items list', 'borghamns-general' ),
+			'items_list_navigation' => __( 'Items list navigation', 'borghamns-general' ),
+			'filter_items_list'     => __( 'Filter items list', 'borghamns-general' ),
+		);
+
+		$args = array(
+			'label'               => __( 'Beställ prover', 'borghamns-general' ),
+			'description'         => __( 'Beställ prover', 'borghamns-general' ),
+			'labels'              => $labels,
+			'supports'            => array( 'title', 'custom-fields' ),
+			'hierarchical'        => false,
+			'public'              => false,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'menu_icon'           => 'dashicons-editor-table',
+			'show_in_admin_bar'   => false,
+			'show_in_nav_menus'   => false,
+			'can_export'          => true,
+			'has_archive'         => false,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'page',
+			'show_in_rest'        => true,
+		);
+
+		register_post_type( 'bestall_prover', $args );
+	}
+
+	/**
+	 * Register Begär offert post type meta fields.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamns_begar_offert_post_type_meta_fields() {
+
+		$meta_keys = array(
+			'borg_product_type',
+			'borg_stone_type',
+			'borg_form_type',
+			'borg_treatment_type',
+			'borg_measurements',
+			'borg_placing',
+			'borg_sizes',
+			'borg_surface_treatment',
+			'borg_surface_treatment_custom',
+			'borg_placering_sizes',
+			'borg_step_4_thickness',
+			'borg_step_5_visible_edgez',
+			'borg_step_5_edge_processing',
+			'borg_step_5_edge_processing_custom',
+			'borg_step_5_quantity',
+			'borg_step_6_edge_processing',
+			'borg_step_6_edge_processing_custom',
+			'borg_step_6_fonsterbank_quantity',
+			'borg_step_7_ho_type',
+			'borg_step_8_hall_type',
+			'borg_step_9_punching_holes',
+			'borg_step_10_edge_stripes',
+			'borg_step_10_holes_number',
+			'borg_step_11_bakkantslist_stankskydd',
+			'borg_step_11_matt_bakkantslist_stankskydd',
+			'borg_step_12_matt_bakkantslist_stankskydd',
+		);
+
+		foreach ( $meta_keys as $meta_key ) {
+			register_meta(
+				'post',
+				$meta_key,
+				array(
+					'object_subtype' => 'begar_offert',
+					'show_in_rest'   => true,
+					'type'           => 'string',
+				),
+			);
+		}
+	}
 }
