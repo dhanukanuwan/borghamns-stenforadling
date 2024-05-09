@@ -152,48 +152,56 @@ const defaultContactDetails = [
         name: __('Namn', 'ordersamples'),
         val: '',
         type: 'text',
+        key: 'borg_sender_name',
         required: true
     },
     {
         name: __('Företag', 'ordersamples'),
         val: '',
         type: 'text',
+        key: 'borg_sender_company',
         required: false
     },
     {
         name: __('Adress', 'ordersamples'),
         val: '',
         type: 'text',
+        key: 'borg_sender_address',
         required: true
     },
     {
         name: __('Postnummer', 'ordersamples'),
         val: '',
         type: 'text',
+        key: 'borg_sender_post_code',
         required: true
     },
     {
         name: __('Postort', 'ordersamples'),
         val: '',
         type: 'text',
+        key: 'borg_sender_city',
         required: true
     },
     {
         name: __('Telefon', 'ordersamples'),
         val: '',
         type: 'tel',
+        key: 'borg_sender_telephone',
         required: true
     },
     {
         name: __('Fax', 'ordersamples'),
         val: '',
         type: 'tel',
+        key: 'borg_sender_fax',
         required: false
     },
     {
         name: __('E-post', 'ordersamples'),
         val: '',
         type: 'email',
+        key: 'borg_sender_email',
         required: true
     },
 ];

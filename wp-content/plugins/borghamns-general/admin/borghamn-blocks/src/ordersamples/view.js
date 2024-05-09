@@ -1,12 +1,15 @@
 import { __ } from '@wordpress/i18n';
 import { createRoot, useState } from '@wordpress/element';
 import {defaultOrderCheckboxes, defaultContactDetails} from './checkboxes';
+import apiFetch from '@wordpress/api-fetch';
 
 const OrderSamples = () => {
 
     const [ orderCheckBoxes, setOrderCheckBoxes ] = useState( defaultOrderCheckboxes );
     const [contactDetails, setContactDetails] = useState( defaultContactDetails );
     const [termsAccepted, setTermsAccespted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccsess] = useState('');
 
     const handleCheckBoxUpdate = ( key, index, checked ) => {
 
@@ -41,16 +44,74 @@ const OrderSamples = () => {
 
     }
 
-    const handleFormSubmit = ( event ) => {
+    const handleFormSubmit = async ( event ) => {
+
+        event.preventDefault();
+        event.stopPropagation();
 
         if ( !event.target.checkValidity() ) {
-            event.preventDefault();
-            event.stopPropagation();
 
             event.target.classList.add('was-validated');
 
             return;
         }
+
+        setLoading( true );
+        setSuccsess( '' );
+
+        let savedData = [...contactDetails];
+
+        const checkboxKeys = [ 'grabrun', 'ljusgra', 'ox', 'oxl' ];
+
+        checkboxKeys.forEach( (key) => {
+
+            const checkboxItem = orderCheckBoxes[key];
+
+            if ( checkboxItem ) {
+
+                let selectedBoxes = [];
+
+                checkboxItem.boxes.forEach( (box) => {
+
+                    if ( box.checked ) {
+                        selectedBoxes.push( box.name );
+                    }
+
+                });
+
+                savedData.push(
+                    {
+                        key: `borg_${key}`,
+                        val: selectedBoxes.join()
+                    },
+                    {
+                        key: `borg_${key}_annan_ytbehandling`,
+                        val: checkboxItem.annan_ytbehandling
+                    }
+                );
+
+            }
+
+        });
+
+        let queryParams = {
+            saved_data: JSON.stringify(savedData ),
+        }
+
+        
+        await apiFetch( {
+            path: 'borghamns/v1/savebestallprover',
+            method: 'POST',
+            data: queryParams,
+        } ).then( ( res ) => {
+            
+            console.log( res );
+
+        } );
+
+        setLoading( false );
+        
+
     }
 
     const handleContactDetailChange = ( key, val ) => {

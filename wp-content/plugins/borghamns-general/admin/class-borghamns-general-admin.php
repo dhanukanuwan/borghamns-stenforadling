@@ -657,4 +657,118 @@ class Borghamns_General_Admin {
 		include plugin_dir_path( __DIR__ ) . 'admin/partials/offert-metabox-output.php';
 	}
 
+	/**
+	 * Save Beställ prover endpoint.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_save_bestall_prover_endpoint() {
+
+		register_rest_route(
+			'borghamns/v1',
+			'/savebestallprover',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'borghamn_save_bestall_prover_endpoint_callback' ),
+				'permission_callback' => '__return_true',
+			)
+		);
+	}
+
+	/**
+	 * SSave Beställ prover endpoint callback function.
+	 *
+	 * @since    1.0.0
+	 * @param     array $request .
+	 */
+	public function borghamn_save_bestall_prover_endpoint_callback( $request ) {
+
+		$data    = array();
+		$success = false;
+		$message = '';
+
+		$saved_data = json_decode( sanitize_text_field( $request->get_param( 'saved_data' ) ), true );
+
+		$meta_data    = array();
+		$contact_name = '';
+
+		if ( ! empty( $saved_data ) ) {
+
+			foreach ( $saved_data as $saved_item ) {
+
+				$meta_data[ $saved_item['key'] ] = $saved_item['val'];
+
+			}
+
+			$found_key = array_search( 'Namn', array_column( $saved_data, 'name' ), true );
+
+			if ( false !== $found_key ) {
+				$contact_name = $saved_data[ $found_key ]['val'];
+			}
+		}
+
+		if ( ! empty( $contact_name ) ) {
+
+			$post_title = 'Nya Beställ prover från ' . $contact_name;
+
+			$post_args = array(
+				'post_title'   => $post_title,
+				'post_content' => '',
+				'post_status'  => 'publish',
+				'post_author'  => 1,
+				'post_type'    => 'bestall_prover',
+			);
+
+			if ( ! empty( $meta_data ) ) {
+				$post_args['meta_input'] = $meta_data;
+			}
+
+			$post_id = wp_insert_post( $post_args );
+
+			if ( ! empty( $post_id ) && ! is_wp_error( $post_id ) ) {
+				$success         = true;
+				$data['post_id'] = $post_id;
+
+				$this->borghamn_send_begar_offert_email( $post_id, $post_title );
+			}
+		}
+
+		$response = rest_ensure_response(
+			array(
+				'data'    => $data,
+				'success' => $success,
+				'message' => $message,
+			)
+		);
+
+		return $response;
+	}
+
+	/**
+	 * Add Begär offert custom fields meta box.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_bestall_prover_metabox() {
+
+		add_meta_box(
+			'offert_information_metabox',
+			'Beställ prover Information',
+			array( $this, 'borghamn_register_bestall_prover_metabox_callback' ),
+			'bestall_prover',
+			'advanced',
+			'low',
+		);
+	}
+
+	/**
+	 * Add Begär offert custom fields meta box.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_bestall_prover_metabox_callback( $post ) {
+		include plugin_dir_path( __DIR__ ) . 'admin/partials/bestall-prover-data.php';
+		include plugin_dir_path( __DIR__ ) . 'admin/partials/offert-metabox-output.php';
+	}
+
 }

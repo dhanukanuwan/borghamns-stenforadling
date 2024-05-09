@@ -358,7 +358,7 @@ class Borghamns_CPT {
 			'label'               => __( 'Beställ prover', 'borghamns-general' ),
 			'description'         => __( 'Beställ prover', 'borghamns-general' ),
 			'labels'              => $labels,
-			'supports'            => array( 'title', 'custom-fields' ),
+			'supports'            => array( 'title', 'editor', 'custom-fields' ),
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,
@@ -370,8 +370,9 @@ class Borghamns_CPT {
 			'has_archive'         => false,
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
-			'capability_type'     => 'page',
+			'capability_type'     => 'post',
 			'show_in_rest'        => true,
+			'template_lock'       => 'all',
 		);
 
 		register_post_type( 'bestall_prover', $args );
@@ -429,6 +430,45 @@ class Borghamns_CPT {
 				$meta_key,
 				array(
 					'object_subtype' => 'begar_offert',
+					'show_in_rest'   => true,
+					'type'           => 'string',
+				),
+			);
+		}
+	}
+
+	/**
+	 * Register Beställ prover post type meta fields.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamns_bestall_prover_post_type_meta_fields() {
+
+		$meta_keys = array(
+			'borg_sender_name',
+			'borg_sender_company',
+			'borg_sender_address',
+			'borg_sender_post_code',
+			'borg_sender_city',
+			'borg_sender_telephone',
+			'borg_sender_fax',
+			'borg_sender_email',
+			'borg_grabrun',
+			'borg_grabrun_annan_ytbehandling',
+			'borg_ljusgra',
+			'borg_ljusgra_annan_ytbehandling',
+			'borg_ox',
+			'borg_ox_annan_ytbehandling',
+			'borg_oxl',
+			'borg_oxl_annan_ytbehandling',
+		);
+
+		foreach ( $meta_keys as $meta_key ) {
+			register_meta(
+				'post',
+				$meta_key,
+				array(
+					'object_subtype' => 'bestall_prover',
 					'show_in_rest'   => true,
 					'type'           => 'string',
 				),

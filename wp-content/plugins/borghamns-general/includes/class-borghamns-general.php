@@ -168,6 +168,7 @@ class Borghamns_General {
 		$this->loader->add_action( 'init', $plugin_admin, 'borghamn_register_faq_dynamic_block' );
 		$this->loader->add_action( 'acf/include_fields', $plugin_admin, 'borghamn_register_acf_field_groups' );
 		$this->loader->add_action( 'add_meta_boxes_begar_offert', $plugin_admin, 'borghamn_register_offert_metabox' );
+		$this->loader->add_action( 'add_meta_boxes_bestall_prover', $plugin_admin, 'borghamn_register_bestall_prover_metabox' );
 
 		//$this->loader->add_action( 'acf/settings/remove_wp_meta_box', $plugin_admin, 'borghamn_disable_acf_remove_wp_metabox' );
 
@@ -179,8 +180,10 @@ class Borghamns_General {
 		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_begar_offert_post_type' );
 		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_bestall_prover_post_type' );
 		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_begar_offert_post_type_meta_fields' );
+		$this->loader->add_action( 'init', $borghamns_cpt, 'borghamns_bestall_prover_post_type_meta_fields' );
 
 		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'borghamn_save_begar_offert_endpoint' );
+		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'borghamn_save_bestall_prover_endpoint' );
 
 	}
 
