@@ -5,48 +5,56 @@ const defaultContactDetails = [
         name: __('Namn', 'borghamns-general'),
         val: '',
         type: 'text',
+        key: 'borg_sender_name',
         required: true
     },
     {
         name: __('Företag', 'borghamns-general'),
         val: '',
         type: 'text',
+        key: 'borg_sender_company',
         required: false
     },
     {
         name: __('Adress', 'borghamns-general'),
         val: '',
         type: 'text',
+        key: 'borg_sender_address',
         required: true
     },
     {
         name: __('Postnummer', 'borghamns-general'),
         val: '',
         type: 'text',
+        key: 'borg_sender_post_code',
         required: true
     },
     {
         name: __('Postort', 'borghamns-general'),
         val: '',
         type: 'text',
+        key: 'borg_sender_city',
         required: true
     },
     {
         name: __('Telefon', 'borghamns-general'),
         val: '',
         type: 'tel',
+        key: 'borg_sender_telephone',
         required: true
     },
     {
         name: __('Fax', 'borghamns-general'),
         val: '',
         type: 'tel',
+        key: 'borg_sender_fax',
         required: false
     },
     {
         name: __('E-post', 'borghamns-general'),
         val: '',
         type: 'email',
+        key: 'borg_sender_email',
         required: true
     },
 ];

@@ -97,6 +97,14 @@ class Borghamns_General_Admin {
 				'render_callback' => array( $this, 'borghamn_register_order_samples_dynamic_block_render_callback' ),
 			)
 		);
+
+		register_block_type(
+			__DIR__ . '/borghamn-blocks/build/offert-metabox/',
+			array(
+				'api_version'     => 3,
+				'render_callback' => array( $this, 'borghamn_register_offer_dynamic_block_render_callback' ),
+			)
+		);
 	}
 
 	/**
@@ -484,7 +492,7 @@ class Borghamns_General_Admin {
 	}
 
 	/**
-	 * Get LMS courses for the Success Board endpoint.
+	 * Save Begär offert endpoint.
 	 *
 	 * @since    1.0.0
 	 */
@@ -502,7 +510,7 @@ class Borghamns_General_Admin {
 	}
 
 	/**
-	 * Get LMS courses for the Success Board callback function.
+	 * Save Begär offert callback function.
 	 *
 	 * @since    1.0.0
 	 * @param     array $request .
@@ -514,14 +522,61 @@ class Borghamns_General_Admin {
 		$message = '';
 
 		$contact_info = json_decode( sanitize_text_field( $request->get_param( 'contact_info' ) ), true );
-		$comments     = json_decode( sanitize_text_field( $request->get_param( 'comments' ) ), true );
+		$comments     = sanitize_textarea_field( $request->get_param( 'comments' ) );
 		$saved_data   = json_decode( sanitize_text_field( $request->get_param( 'saved_data' ) ), true );
 
-		$data = array(
-			'contact_info' => $contact_info,
-			'comments' => $comments,
-			'saved_data' => $saved_data,
-		);
+		$contact_name = '';
+		$meta_data    = array();
+
+		if ( ! empty( $contact_info ) ) {
+
+			$found_key = array_search( 'Namn', array_column( $contact_info, 'name' ), true );
+
+			if ( false !== $found_key ) {
+				$contact_name = $contact_info[ $found_key ]['val'];
+			}
+
+			foreach ( $contact_info as $contact_item ) {
+				$meta_data[ $contact_item['key'] ] = $contact_item['val'];
+			}
+		}
+
+		if ( ! empty( $saved_data ) ) {
+
+			foreach ( $saved_data as $saved_item ) {
+				$meta_data[ $saved_item['key'] ] = $saved_item['val'];
+			}
+		}
+
+		if ( ! empty( $comments ) ) {
+			$meta_data['borg_sender_comments'] = $comments;
+		}
+
+		if ( ! empty( $contact_name ) ) {
+
+			$post_title = 'Nya Begär offert från ' . $contact_name;
+
+			$post_args = array(
+				'post_title'   => $post_title,
+				'post_content' => '',
+				'post_status'  => 'publish',
+				'post_author'  => 1,
+				'post_type'    => 'begar_offert',
+			);
+
+			if ( ! empty( $meta_data ) ) {
+				$post_args['meta_input'] = $meta_data;
+			}
+
+			$post_id = wp_insert_post( $post_args );
+
+			if ( ! empty( $post_id ) && ! is_wp_error( $post_id ) ) {
+				$success         = true;
+				$data['post_id'] = $post_id;
+
+				$this->borghamn_send_begar_offert_email( $post_id, $post_title );
+			}
+		}
 
 		$response = rest_ensure_response(
 			array(
@@ -533,4 +588,73 @@ class Borghamns_General_Admin {
 
 		return $response;
 	}
+
+	/**
+	 * Send Begär offert email.
+	 *
+	 * @since    1.0.0
+	 * @param     int    $post_id .
+	 * @param     string $title .
+	 */
+	private function borghamn_send_begar_offert_email( $post_id, $title ) {
+
+		if ( ! $post_id || ! $title ) {
+			return;
+		}
+
+		$post_admin_link = home_url( '/wp-admin/post.php?post=' . $post_id . '&action=edit' );
+
+		$message  = '<p>Hej!</p>';
+		$message .= '<p>Du har ett nya ' . esc_html( $title ) . '</p>';
+		$message .= '<p>Logga in på hemsidan för att se erbjudandeinformation.</p>';
+		$message .= '<p>Nya Begär offert link: <a href="' . esc_url( $post_admin_link ) . '" target="_blank" rel="nofollow, noindex, noreferrer">' . esc_url( $post_admin_link ) . '</a></p>';
+
+		$to        = 'info@borghamns-stenforadling.se';
+		$subject   = $title;
+		$body      = $message;
+		$headers   = array( 'Content-Type: text/html; charset=UTF-8' );
+		$headers[] = 'From: Borghamns Stenförädling Hemsida <noreply@borghamns-stenforadling.se>';
+		$headers[] = 'Cc: Kajsa <kajsa@borghamns-stenforadling.se>';
+		$headers[] = 'Cc: Dhanuka Gunarathna <dhanuka@hashcodeab.se>';
+
+		wp_mail( $to, $subject, $body, $headers );
+
+	}
+
+	/**
+	 * Add Begär offert custom fields meta box.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_disable_acf_remove_wp_metabox() {
+		return false;
+	}
+
+	/**
+	 * Add Begär offert custom fields meta box.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_offert_metabox() {
+
+		add_meta_box(
+			'offert_information_metabox',
+			'Begr offert Information',
+			array( $this, 'borghamn_register_offert_metabox_callback' ),
+			'begar_offert',
+			'advanced',
+			'low',
+		);
+	}
+
+	/**
+	 * Add Begär offert custom fields meta box.
+	 *
+	 * @since    1.0.0
+	 */
+	public function borghamn_register_offert_metabox_callback( $post ) {
+		include plugin_dir_path( __DIR__ ) . 'admin/partials/offert-field-data.php';
+		include plugin_dir_path( __DIR__ ) . 'admin/partials/offert-metabox-output.php';
+	}
+
 }

@@ -3,6 +3,8 @@ $primary_lite: #899b9c;
 $secondary: #e3e7e9;
 $secondary_lite: #f0f4f5;
 $white: #ffffff;
+$red: #dc3545;
+$green: #198754;
 
 
 $text_color_primary: #383838;
@@ -14,6 +16,8 @@ $theme-colors: (
   "white": $white,
   "primary-lite": $primary_lite,
   "secondary-lite": $secondary_lite,
+  "danger": $red,
+  "success": $green,
 );
 
 $body-color: $text_color_primary;

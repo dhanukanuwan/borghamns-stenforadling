@@ -297,7 +297,7 @@ class Borghamns_CPT {
 			'label'               => __( 'Begär offert', 'borghamns-general' ),
 			'description'         => __( 'Begär offert', 'borghamns-general' ),
 			'labels'              => $labels,
-			'supports'            => array( 'title', 'custom-fields' ),
+			'supports'            => array( 'title', 'editor', 'custom-fields' ),
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,
@@ -309,8 +309,9 @@ class Borghamns_CPT {
 			'has_archive'         => false,
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
-			'capability_type'     => 'page',
+			'capability_type'     => 'post',
 			'show_in_rest'        => true,
+			'template_lock'       => 'all',
 		);
 
 		register_post_type( 'begar_offert', $args );
@@ -384,6 +385,16 @@ class Borghamns_CPT {
 	public function borghamns_begar_offert_post_type_meta_fields() {
 
 		$meta_keys = array(
+			'borg_sender_name',
+			'borg_sender_company',
+			'borg_sender_address',
+			'borg_sender_post_code',
+			'borg_sender_city',
+			'borg_sender_telephone',
+			'borg_sender_fax',
+			'borg_sender_email',
+			'borg_sender_file_url',
+			'borg_sender_comments',
 			'borg_product_type',
 			'borg_stone_type',
 			'borg_form_type',
